@@ -145,8 +145,10 @@
     <link href="/css/summernote-lite.css" rel="stylesheet">
 
     <script src="/js/app.js"></script>
-    <script src="/js/summernote-lite.js"></script>
     <script src="/semantic/dist/semantic.min.js"></script>
+    <script src="/js/module.js"></script>
+    <script src="/js/hotkeys.js"></script>
+    <script src="/js/simditor.js"></script>
     <link rel="stylesheet" type="text/css" href="https://simditor.tower.im/assets/styles/simditor.css" />
     <script>
         $(document).ready(function () {
