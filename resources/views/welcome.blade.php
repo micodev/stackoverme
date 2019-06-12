@@ -15,8 +15,7 @@
             <div class="ten wide column">
                 <div class="ui form">
                     <div class="ui left corner labeled fluid input">
-
-                            <div id="summernote" ></div>
+                        <textarea id="editor" placeholder="Balabala" autofocus></textarea>
                     </div>
                 </div>
             </div>

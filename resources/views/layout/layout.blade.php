@@ -191,7 +191,15 @@
 
             });
             $('.ui.dropdown').dropdown();
-
+            $(function () {
+            Simditor.locale = 'en-US';
+            toolbar = ['bold','strikethrough', 'fontScale', 'color', 'ol', 'code', 'link' , 'alignment'];
+            var editor = new Simditor({
+                textarea: $('#editor'),
+                toolbar: toolbar,
+                //optional options
+            });
+        })
 
 
 
