@@ -148,6 +148,7 @@
     <script src="/js/module.js"></script>
     <script src="/js/hotkeys.js"></script>
     <script src="/js/simditor.js"></script>
+    <script src="/js/uploader.js"></script>
     <script>
         $(document).ready(function () {
 
@@ -204,7 +205,7 @@
         });
 
     </script>
-    <script src="/js/uploader.js"></script>
+
 
 </body>
 
