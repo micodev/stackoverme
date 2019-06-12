@@ -204,7 +204,7 @@
         });
 
     </script>
-
+    <script src="/js/uploader.js"></script>
 
 </body>
 
