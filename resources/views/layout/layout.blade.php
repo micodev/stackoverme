@@ -190,49 +190,6 @@
             $('.ui.dropdown').dropdown();
 
 
-            var alignleftbutton = function (context) {
-                var ui = $.summernote.ui;
-                // create button
-                var button = ui.button({
-                    contents: '<i class="align left icon"></i>',
-                    tooltip: 'Align left',
-                    click: function () {
-                        $('#summernote').summernote('justifyLeft');
-                    }
-                });
-
-                return button.render(); // return button as jquery object
-            }
-            var alignrightbutton = function (context) {
-                var ui = $.summernote.ui;
-                // create button
-                var button = ui.button({
-                    contents: '<i class="align right icon"></i>',
-                    tooltip: 'Align right',
-                    click: function () {
-                        $('#summernote').summernote('justifyRight');
-                    }
-                });
-
-                return button.render(); // return button as jquery object
-            }
-
-
-            $('#summernote').summernote({
-                placeholder: 'write you solution',
-                minHeight: 300,
-                maxHeight: 300,
-                toolbar: [
-                    ['style', ['style']],
-                    ['insert', ['link', ]],
-                    ['mybutton', ['alignleft','alignright']]
-                ],
-                buttons: {
-                    alignleft: alignleftbutton,
-                    alignright: alignrightbutton
-                }
-            });
-
 
 
         });
