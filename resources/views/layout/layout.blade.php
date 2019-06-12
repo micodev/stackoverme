@@ -139,17 +139,15 @@
     <!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script> -->
 
 
+    <link rel="stylesheet" type="text/css" href="https://simditor.tower.im/assets/styles/simditor.css" />
     <link rel="stylesheet" type="text/css" href="/semantic/dist/semantic.css">
     <link rel="stylesheet" type="text/css" href="/css/app.css">
     <link rel="stylesheet" type="text/css" href="/css/extra.css">
-    <link href="/css/summernote-lite.css" rel="stylesheet">
-
     <script src="/js/app.js"></script>
     <script src="/semantic/dist/semantic.min.js"></script>
     <script src="/js/module.js"></script>
     <script src="/js/hotkeys.js"></script>
     <script src="/js/simditor.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://simditor.tower.im/assets/styles/simditor.css" />
     <script>
         $(document).ready(function () {
 
