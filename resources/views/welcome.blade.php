@@ -54,7 +54,7 @@
         </div>
         <div class="row">
             <div class="ten wide column">
-                <div class="ui horizontal list">
+                <div class="ui horizontal list upimages">
 
                     <div class="item">
                         <a class="ui teal image medium label">
