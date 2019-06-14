@@ -57,6 +57,11 @@ $(function(){
        // }
 
     })
+    $(".post_issue").click(function(){
+        console.log( $(".simditor-body").html());
+        $(".ui.relaxed.divided.list").children().remove();
+        $(".ui.relaxed.divided.list").append($(".simditor-body").children());
+    })
 })
 }).call(this);
 

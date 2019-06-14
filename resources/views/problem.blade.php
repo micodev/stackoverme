@@ -17,22 +17,10 @@
 
             </div>
             <div class="ui attached segment">
-                <div class="ui padded attached segment">
-                    <p>
-                        """ruby <br>
-                        /a regex/ <br>
-                        a_string = "foo" <br>
-                        a_string.to_sym <br>
-                        """ <br>
+                <div class="ui padded attached segment problem_body">
+                    <pre class="">code somecodesssssssssssssssssssssss
+wow cosde</pre><p><a href="http://google.com" target="_blank" class="">Textlink </a><br></p><p style="text-align: right;">عربي</p><p style="">english</p><p style="">wow<font color="#e33737">&nbsp;wow</font></p><p style=""><span style="font-size: 1.5em;">wow</span></p><p style=""><span style="font-size: medium;">dead</span></p><p style=""><span style="font-size: medium;"><b>eoe</b></span></p>
 
-                        2 space indent: <br>
-
-                        """ruby <br>
-                        /a regex/ <br>
-                        a_string = "foo" <br>
-                        a_string.to_sym <br>
-                        """ <br>
-                    </p>
                 </div>
                 <div class="ui horizontal bottom attached segment stackable segments">
                     <div class="ui segment">
@@ -91,7 +79,14 @@
         <div class="ui ten wide column">
             <div class="ui fluid segment">
                     <textarea id="editor" placeholder="Balabala" autofocus></textarea>
-                        <button class="ui bottom attached blue button w-a" style="width:5rem !important">send</button>
+                    <div class="ui divider horizontal" style="margin: 0.5rem 0 !important;"></div>
+                    <button class="ui icon blue button w-a" aria-label="label">
+                      <i class="send icon"></i> Send
+                    </button>
+                    <button class="ui icon green button w-a" aria-label="label">
+                            <i class="upload icon"></i> upload image
+                    </button>
+
             </div>
 
         </div>
