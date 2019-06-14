@@ -1,12 +1,25 @@
 (function(){
 $(function(){
 
+    /**
+      <div class="item">
+                        <a class="ui teal image medium label">
+                            <img src="https://fomantic-ui.com/images/avatar/small/joe.jpg">
+                            image_1
+                        </a>
+                    </div>
+     */
     $("input:file").change(function() {
         var files = $(this).get(0).files;
+        var elements =0;
         var api="07330fd01957e18b1ad6a0e07954d026";
         var count = 0;
         $.each(files, function(i, file){
+            var content = '<div class="item"><a class="ui teal image medium label dimmable"><img src="https://fomantic-ui.com/images/avatar/small/joe.jpg"><div class="ui teal double loading button" style="padding:0 !important">upload</div><div class="ui dimmer transition hidden"></div></a></div>';
+            $(".upimages").append(content);
             count++;
+        });
+        $.each(files, function(i, file){
             form = new FormData();
             form.append('image', file);
             $.ajax({
@@ -17,6 +30,7 @@ $(function(){
                 contentType: false,
                 processData: false
             }).always(function(jqXHR){
+
                 count--;
                 if(jqXHR.status != 200 ) {
                     res = $.parseJSON(jqXHR.responseText);
@@ -27,8 +41,10 @@ $(function(){
                 if(res.data.error) {
                     alert("error");
                 } else {
-                    content = '<img src="' + res.data.image.url +'"/>';
-                    $(".upimages").append(content);
+                    content = '<div class="item"><a class="ui teal image medium label"> <img src="'+res.data.image.url+'">'+res.data.id+'</a></div>';
+                    $($(".upimages").children()[elements]).replaceWith(content);
+                    elements++;
+                    //$(".upimages").append(content);
                    console.log(res.data.image.url);
                 }
 

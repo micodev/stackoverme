@@ -90,28 +90,8 @@
         <div class="ui column three wide"></div>
         <div class="ui ten wide column">
             <div class="ui fluid segment">
-                <div class="ui form left corner labeled fluid input">
-                    <div class="ui left corner blue label">
-                        <i class="comment description icon"></i>
-                    </div>
-                    <textarea></textarea>
-                </div>
-                <div class="ui divider horizontal"></div>
-                <div class="ui fluid input" style="margin-bottom:7px;">
-                    <input type="text" placeholder="link related">
-                </div>
-                <div class="ui fluid grid">
-                    <div class="ui thirteen wide left floated column">
-                        <div class="ui fluid input">
-                            <input type="text" placeholder="additional link">
-                        </div>
-                    </div>
-                    <div class="ui right floated column w-a">
-                        <button class="ui blue button w-a">send</button>
-                    </div>
-                </div>
-
-
+                    <textarea id="editor" placeholder="Balabala" autofocus></textarea>
+                        <button class="ui bottom attached blue button w-a" style="width:5rem !important">send</button>
             </div>
 
         </div>

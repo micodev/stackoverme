@@ -56,7 +56,7 @@
             <div class="ten wide column">
                 <div class="ui horizontal list upimages">
 
-                    <div class="item">
+                    <!-- <div class="item">
                         <a class="ui teal image medium label">
                             <img src="https://fomantic-ui.com/images/avatar/small/joe.jpg">
                             image_1
@@ -68,7 +68,7 @@
                             <div class="ui teal double loading button" style="padding:0 !important">upload</div>
 
                         </a>
-                    </div>
+                    </div> -->
 
                 </div>
             </div>

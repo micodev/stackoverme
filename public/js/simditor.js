@@ -2600,7 +2600,7 @@ Simditor = (function(superClass) {
     }
   };
 
-  Simditor.prototype._tpl = "<div class=\"simditor ui fluid accordion red segment \">\n  <div class=\"simditor-wrapper\">\n    <div class=\"simditor-placeholder\"></div>\n    <div class=\"simditor-body\" contenteditable=\"true\">\n    </div>\n  </div>\n</div>";
+  Simditor.prototype._tpl = "<div class=\"simditor ui attached fluid accordion red segment \">\n  <div class=\"simditor-wrapper\">\n    <div class=\"simditor-placeholder\"></div>\n    <div class=\"simditor-body\" contenteditable=\"true\">\n    </div>\n  </div>\n</div>";
 
   Simditor.prototype._render = function() {
     var key, ref, results, val;
