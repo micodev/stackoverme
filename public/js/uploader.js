@@ -41,7 +41,7 @@ $(function(){
                 if(res.data.error) {
                     alert("error");
                 } else {
-                    content = '<div class="item"><a class="ui teal image medium label"> <img style="width: 50px !important;" src="'+res.data.image.url+'">'+res.data.id+'</a></div>';
+                    content = '<div class="item"><a class="ui teal image medium label"> <img style="width: 50px !important;" src="'+res.data.thumb.url+'" thumb="'+res.data.image.url+'" onclick=lightit(this)>'+res.data.id+'</a></div>';
                     $($(".upimages").children()[elements]).replaceWith(content);
                     elements++;
                     //$(".upimages").append(content);

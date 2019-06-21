@@ -12,7 +12,6 @@
 
     <script>
         window.lightit = function (e) {
-            alert("e");
             $(e).wrap('<a href="' + $(e).attr("thumb") + '" rel="lightbox" />');
             $(e).parent('a').trigger('click');
         }

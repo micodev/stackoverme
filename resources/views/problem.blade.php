@@ -110,7 +110,7 @@ wow cosde</pre>
         <div class="ui ten wide column">
             <div class="ui fluid piled raised segments">
                 <div class="ui segment blue ">
-                    <a class="ui green ribbon label"> <i class="check icon"></i> </a>
+                    <a class="ui grey ribbon label"> <i class="info icon"></i> </a>
                     <div class="ui divider horizontal clearing"></div>
                     <h2 class="ui tiny header d-inline comment-seg">
                         <i class="user icon"></i>
@@ -121,31 +121,26 @@ wow cosde</pre>
                         </div>
                     </h2>
                     <div class="activatior">
-                        <div class="ui tall stacked segment">
-                            <p>2
-                                """ruby <br>
-                                /a regex/ <br>
-                                a_string = "foo" <br>
-                                a_string.to_sym <br>
-                                """ <br>
+                        <div class="ui tall stacked segment comment_body">
 
-                                2 space indent: <br>
-
-                                """ruby <br>
-                                /a regex/ <br>
-                                a_string = "foo" <br>
-                                a_string.to_sym <br>
-                                """ <br>
-                            </p>
-
-
-
+<pre class="">code somecodesssssssssssssssssssssss
+wow cosde</pre>
+                    <p><a href="http://google.com" target="_blank" class="">Textlink </a><br></p>
+                    <p style="text-align: right;">عربي</p>
+                    <p style="">english</p>
+                    <p style="">wow<font color="#e33737">&nbsp;wow</font>
+                    </p>
+                    <p style=""><span style="font-size: 1.5em;">wow</span></p>
+                    <p style=""><span style="font-size: medium;">dead</span></p>
+                    <p style=""><span style="font-size: medium;"><b>eoe</b></span></p>
 
 
                         </div>
                     </div>
                     <div class=" ui flowing popup bottom left transition hidden">
-
+                        <button class="ui icon button" aria-label="is_correct">
+                          <i class="check icon green"></i>
+                        </button>
                         <button class="ui labeled icon button red right  seg-attached-left c-submenu"
                             aria-label="label">
                             <i class="like icon"></i>
@@ -191,7 +186,83 @@ wow cosde</pre>
                             </div>
                     </div>
                 </div>
+                <div class="ui segment blue ">
+                    <a class="ui green ribbon label"> <i class="check icon"></i> </a>
+                    <div class="ui divider horizontal clearing"></div>
+                    <h2 class="ui tiny header d-inline comment-seg">
+                        <i class="user icon"></i>
+                        <div class="content">
+                            Mico Gets  <i class="check primary circle icon"></i>
+                            <div class="sub header">lecturer</div>
 
+                        </div>
+                    </h2>
+                    <div class="activatior">
+                        <div class="ui tall stacked segment comment_body">
+
+<pre class="">code somecodesssssssssssssssssssssss
+wow cosde</pre>
+                    <p><a href="http://google.com" target="_blank" class="">Textlink </a><br></p>
+                    <p style="text-align: right;">عربي</p>
+                    <p style="">english</p>
+                    <p style="">wow<font color="#e33737">&nbsp;wow</font>
+                    </p>
+                    <p style=""><span style="font-size: 1.5em;">wow</span></p>
+                    <p style=""><span style="font-size: medium;">dead</span></p>
+                    <p style=""><span style="font-size: medium;"><b>eoe</b></span></p>
+
+
+                        </div>
+                    </div>
+                    <div class=" ui flowing popup bottom left transition hidden">
+                        <button class="ui icon button green" aria-label="is_correct">
+                          <i class="check icon bg-white"></i>
+                        </button>
+                        <button class="ui labeled icon button red right  seg-attached-left c-submenu"
+                            aria-label="label">
+                            <i class="like icon"></i>
+                            30
+                        </button>
+                        <button class="ui labeled icon button comment-button blue right c-submenu" aria-label="label">
+                            <i class="comment alternate icon"></i>
+                            30
+                        </button>
+                        <button class="ui icon button blue seg-attached-right c-submenu" aria-label="label">
+                            <i class="share icon"></i>
+                        </button>
+
+                    </div>
+                    <div class="ui celled list">
+                        <div class="item" style="margin-top:10px;">
+
+                            <i class="ui avatar user icon"></i>
+                            <div class="content">
+                                <a class="header">Rachel</a>
+                                <div class="description d-inline">Last seen watching <a
+                                        class="header d-inline"><b>@micodev</b></a> just now.</div>
+                                <button class="circular ui icon right floated mini button">
+                                    <i class="reply icon"></i>
+                                </button>
+                            </div>
+
+
+                        </div>
+                        <div class="item" style="margin-top:10px;">
+
+                                <i class="ui avatar user icon"></i>
+                                <div class="content">
+                                    <a class="header">Rachel</a>
+                                    <div class="description d-inline">Last seen watching <a
+                                            class="header d-inline"><b>@micodev</b></a> just now.</div>
+                                    <button class="circular ui icon right floated mini button">
+                                        <i class="reply icon"></i>
+                                    </button>
+                                </div>
+
+
+                            </div>
+                    </div>
+                </div>
             </div>
 
 

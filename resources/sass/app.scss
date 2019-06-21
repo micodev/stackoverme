@@ -178,7 +178,7 @@ background: linear-gradient(135deg, rgba(26,167,255,1) 0%, rgba(0,107,184,1) 76%
 .ui.horizontal.list >.item{
     margin-right: 5px !important;
 }
-.problem_body > pre{
+.problem_body > pre ,.comment_body>pre{
     padding: 10px 5px 10px 10px !important;
     margin: 15px 0 !important;
     display: block !important;
