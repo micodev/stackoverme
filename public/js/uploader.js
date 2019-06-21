@@ -41,7 +41,7 @@ $(function(){
                 if(res.data.error) {
                     alert("error");
                 } else {
-                    content = '<div class="item"><a class="ui teal image medium label"> <img src="'+res.data.image.url+'">'+res.data.id+'</a></div>';
+                    content = '<div class="item"><a class="ui teal image medium label"> <img style="width: 50px !important;" src="'+res.data.image.url+'">'+res.data.id+'</a></div>';
                     $($(".upimages").children()[elements]).replaceWith(content);
                     elements++;
                     //$(".upimages").append(content);
@@ -57,7 +57,7 @@ $(function(){
        // }
 
     })
-    $(".post_issue").click(function(){
+    $(".post_issue,.post_comment").click(function(){
         console.log( $(".simditor-body").html());
         $(".ui.relaxed.divided.list").children().remove();
         $(".ui.relaxed.divided.list").append($(".simditor-body").children());

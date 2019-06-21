@@ -48,7 +48,7 @@
                 <input type="file" class="inputfile" id="embedpollfileinput" accept="image/x-png,image/gif,image/jpeg"
                     multiple>
                     <div class="ten wide column">
-                        <button class="ui primary right floated button post_issue"><i class="save icon"></i> Save</button>
+                        <button class="ui primary right floated tiny button post_issue"><i class="save icon"></i> Save</button>
                     </div>
             </div>
         </div>
