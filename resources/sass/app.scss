@@ -1,5 +1,6 @@
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url('https://fonts.googleapis.com/css?family=Saira+Semi+Condensed&display=swap');
 // Variables
 @import 'variables';
 
@@ -12,7 +13,9 @@
 .note-editable>*{
     line-height: 0.5;
 }
-
+.problem_title{
+    font-family: 'Saira Semi Condensed', sans-serif !important;
+}
 [data-value="pre"]{
     border-top-right-radius:1px;
     border-bottom-right-radius:1px;
@@ -57,7 +60,9 @@
     margin: 0 !important;
     margin-bottom: 50px !important;
 }
-
+.ui.footer {
+    z-index: 1000;
+}
 @media (min-height: 320px) {
     .ui.footer.form-page { /* Increased specificity for SO snippet priority */
       position: fixed;
@@ -191,4 +196,7 @@ background: linear-gradient(135deg, rgba(26,167,255,1) 0%, rgba(0,107,184,1) 76%
     white-space: pre !important;
     word-wrap: normal !important;
     overflow-x: auto !important;
+}
+h6{
+    margin: 0 !important;
 }

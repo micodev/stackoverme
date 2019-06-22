@@ -150,7 +150,9 @@
     <script src="/js/uploader.js"></script>
     <script>
         $(document).ready(function () {
-
+         //   $('.ui.sticky')
+         //   .sticky('refresh')
+         // ;
             $('.ui.pointing.dropdown')
                 .dropdown({
                     on: 'hover',
@@ -185,7 +187,7 @@
 
             $('.sideclick').click(function () {
 
-                $('.ui.sidebar').sidebar('toggle');
+                $('.ui.sidebar').sidebar('setting', 'transition', 'overlay').sidebar('toggle');
 
             });
             $('.ui.dropdown').dropdown();
@@ -200,7 +202,7 @@
         })
 
 
-
+        $(window).scrollTop(0);
         });
 
     </script>

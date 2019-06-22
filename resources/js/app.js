@@ -4,7 +4,7 @@ require('./bootstrap');
 
 
 // window.chartjs = require('chart.js');
-// window.devicon = require('devicon');
+ window.devicon = require('devicon');
 //<link href="alloy-editor/assets/alloy-editor-ocean-min.css" rel="stylesheet">
 //<script src="alloy-editor/alloy-editor-all-min.js"></script>
 //require('./ckeditor/ckeditor.js');

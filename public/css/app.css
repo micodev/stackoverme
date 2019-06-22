@@ -1,5 +1,9 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);.note-editable > * {
+@import url(https://fonts.googleapis.com/css?family=Nunito);@import url(https://fonts.googleapis.com/css?family=Saira+Semi+Condensed&display=swap);.note-editable > * {
   line-height: 0.5;
+}
+
+.problem_title {
+  font-family: "Saira Semi Condensed", sans-serif !important;
 }
 
 [data-value=pre] {
@@ -47,6 +51,10 @@
   padding: 0 !important;
   margin: 0 !important;
   margin-bottom: 50px !important;
+}
+
+.ui.footer {
+  z-index: 1000;
 }
 
 @media (min-height: 320px) {
@@ -204,5 +212,9 @@ body {
   white-space: pre !important;
   word-wrap: normal !important;
   overflow-x: auto !important;
+}
+
+h6 {
+  margin: 0 !important;
 }
 
