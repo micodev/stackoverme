@@ -275,24 +275,24 @@
                 <div class="ui relaxed divided list" style="height: 500px;overflow-y: scroll;">
                     @for( $i=0; $i<10;$i++) <div class="item">
                         <div class="content">
-                            <h5 class="header"></h5>
+                            <h5 class="header">Lorem ipsum dolor </h5>
                             <h3 class="header d-inline">by</h3>
                             <h6 class="d-inline"><a class="header"><b>Bob's Burgers</b></a></h6>
                             <div class="description">
                                 <div class="ui horizontal list">
                                     <div class="item" data-value="af">
-                                        <div class="ui horizontal label">
-                                            <i class="devicon-csharp-plain-wordmark colored"></i> Csharp
+                                        <div class="ui circular  tertiary horizontal label">
+                                            <i class="devicon-csharp-plain-wordmark colored"></i>
                                         </div>
                                     </div>
                                     <div class="item" data-value="ax">
-                                        <div class="ui horizontal label">
-                                            <i class="devicon-javascript-plain colored"></i> JavaScript
+                                        <div class="ui circular  tertiary  horizontal label">
+                                            <i class="devicon-javascript-plain colored"></i>
                                         </div>
                                     </div>
                                     <div class="item" data-value="al">
-                                        <div class="ui horizontal label">
-                                            <i class="devicon-nodejs-plain colored"></i> NodeJs
+                                        <div class="ui circular  tertiary horizontal label">
+                                            <i class="devicon-nodejs-plain colored"></i>
                                         </div>
                                     </div>
                                 </div>

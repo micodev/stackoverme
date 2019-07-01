@@ -58,18 +58,18 @@
 .main-content{
     padding: 0 !important;
     margin: 0 !important;
-    margin-bottom: 50px !important;
+
 }
-.ui.footer {
-    z-index: 1000;
-}
-@media (min-height: 320px) {
-    .ui.footer.form-page { /* Increased specificity for SO snippet priority */
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-    }
-  }
+// .ui.footer {
+//     z-index: 1000;
+// }
+// @media (min-height: 320px) {
+//     .ui.footer.form-page { /* Increased specificity for SO snippet priority */
+//       position: fixed;
+//       bottom: 0;
+//       width: 100%;
+//     }
+//   }
 .amber{
     background: #ffbf00 !important;
 
@@ -199,4 +199,12 @@ background: linear-gradient(135deg, rgba(26,167,255,1) 0%, rgba(0,107,184,1) 76%
 }
 h6{
     margin: 0 !important;
+}
+.main-content{
+    min-height: calc(100vh - 100px);
+
+}
+.footers{
+    margin-top: 30px !important;
+    height: 50px;
 }

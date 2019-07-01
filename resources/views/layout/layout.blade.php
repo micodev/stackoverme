@@ -127,11 +127,16 @@
 
         </div>
 
-        <div class="ui inverted vertical footer segment form-page">
+        {{-- <div class="ui inverted vertical footers segment form-page">
             <div class="ui container">
                 Travel Match 2015. All Rights Reserved
             </div>
-        </div>
+        </div> --}}
+        <footer class="ui inverted vertical footers segment">
+            <div class="ui container">
+                Travel Match 2015. All Rights Reserved
+            </div>
+          </footer>
     </div>
 
 
@@ -206,7 +211,6 @@
         });
 
     </script>
-
 
 </body>
 
