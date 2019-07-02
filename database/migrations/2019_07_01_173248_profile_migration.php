@@ -17,6 +17,7 @@ class ProfileMigration extends Migration
             $table->bigIncrements('id')->unique();
             $table->integer('user_id');
             $table->string('bio');
+            $table->string('profile_pic');
             $table->integer('age');
             $table->integer("gender")->default(0); // true man
            // $table->timestamp('email_verified_at')->nullable();

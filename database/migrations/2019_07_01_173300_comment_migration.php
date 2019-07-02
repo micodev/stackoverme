@@ -17,8 +17,8 @@ class CommentMigration extends Migration
             $table->bigIncrements('id')->unique();
             $table->integer('user_id');
             $table->integer('post_id');
-            $table->string('title');
-            $table->string("description")->default(0);
+            //$table->string('title');
+            $table->string("description");
             $table->softDeletes();
             $table->timestamps();
         });
