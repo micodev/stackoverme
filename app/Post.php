@@ -16,7 +16,10 @@ class Post extends Model
     protected $fillable = [
         'title', 'description', 'like','comment','user_id'
     ];
-
+    public function comments()
+    {
+        return $this->belongsToMany(Comment::Class);
+    }
 
 
 }
