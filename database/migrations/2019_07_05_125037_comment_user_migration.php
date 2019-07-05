@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class TagsTableMigration extends Migration
+class CommentUserMigration extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class TagsTableMigration extends Migration
      */
     public function up()
     {
-        Schema::create('tags', function (Blueprint $table) {
+        Schema::create('user_comment', function (Blueprint $table) {
             $table->bigIncrements('id')->unique();
-            $table->string('name');
-            $table->string('Icon');
+            $table->integer('user_id')->unsigned();
+            $table->integer('comment_id')->unsigned();
         });
     }
 
@@ -27,6 +27,6 @@ class TagsTableMigration extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tags');
+          Schema::dropIfExists('user_comment');
     }
 }

@@ -162,6 +162,8 @@
             <div class="ui top attached inverted segment blue" style="border:0;text-align:center;" tabindex="0">Registeration</div>
             <div class="ui attached segment">
                 <div class="ui form">
+                <form action="login.php" method="post">
+               
                     <div class="field">
                         <div class="ui left corner labeled fluid input">
                             <input type="type" placeholder="enter first name....">
@@ -208,10 +210,12 @@
                             register
                         </button>
                     </div>
+                     </form>
                     <div class="ui horizontal divider header">
                         <i class="users icon"></i>
                         Login
                     </div>
+                    <form action="login.php" method="post">
                     <div class="field">
                         <div class="ui left corner labeled fluid input">
                             <input type="type" placeholder="enter email or username....">
@@ -233,6 +237,7 @@
                             sign-in
                         </button>
                     </div>
+                    </form>
                 </div>
             </div>
 

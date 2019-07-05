@@ -13,6 +13,10 @@ class Comment extends Model
     {
         return $this->belongsToMany(Post::Class);
     }
+    public function Users()
+    {
+        return $this->belongsToMany(User::Class);
+    }
 
 
 }

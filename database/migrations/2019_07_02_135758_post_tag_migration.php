@@ -13,7 +13,11 @@ class PostTagMigration extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('post_tag', function (Blueprint $table) {
+            $table->bigIncrements('id')->unique();
+            $table->integer('tag_id')->unsigned();
+            $table->integer('post_id')->unsigned();
+        });
     }
 
     /**
@@ -23,6 +27,6 @@ class PostTagMigration extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('post_tag');
     }
 }
