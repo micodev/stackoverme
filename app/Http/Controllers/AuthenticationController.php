@@ -85,23 +85,23 @@ class AuthenticationController extends Controller
         if($isvalid =="username")
        {
            if (auth()->attempt(['username' => $username, 'password' => $password])) {
-            return  dd("wow_username"); //"success";
+            return   back()->with(["successful"=>"you have succefully logined !"]);
            }
            else {
-             return  dd("wow_error_username"); //"failed username password";
+             return  back()->withErrors(["username"=>"you have issue in username / password"]);
            }
        }
        elseif ($isvalid =="email") {
         if (auth()->attempt(['email' => $username, 'password' => $password])) {
-            return  dd("wow_email"); //"success";
+            return   back()->with(["successful"=>"you have succefully logined !"]);
         }
         else {
 
-               return   dd("wow_error_email"); // "failed email password";
+               return    back()->withErrors(["username"=>"you have issue in email or password"]);
            }
        }
        else
-       dd("wow_noemail_username");
+       back()->withErrors(["username"=>"you have issue in email or password"]);
 
 
 

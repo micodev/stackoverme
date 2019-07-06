@@ -222,11 +222,13 @@
                         <div class="ui left corner labeled fluid input">
                             <input type="type" placeholder="enter email or username...." name="username"
                             data-position="top center"
+                            class="redborder"
                             @if($errors->has("username"))
+
                             data-content="{{$errors->first('username')}}"
                             @endif
                             >
-                            <div class="ui left corner label">
+                            <div class="ui red left corner label">
                                 <i class="envelope icon"></i>
                             </div>
                         </div>
@@ -245,17 +247,17 @@
                         </button>
                      </div>
                      <div class="field">
-                  
+
                         <div class="alert alert-danger">
                            {{$errors->first('username')}}
                             {{$errors->first('warning')}}
                         </div>
-                   
+
                         @if (Session::get('warning') !=null)
                                 <ul>
-                                
+
                                         <li>{{Session::get('warning') }}</li>
-                                
+
                                 </ul>
                         @endif
                         </div>
@@ -263,7 +265,7 @@
                 </div>
             </div>
           @else
-          
+
           @endguest
         </div>
     </div>
