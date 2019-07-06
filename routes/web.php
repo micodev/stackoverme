@@ -11,8 +11,8 @@
 |
 */
 Route::get('/', 'AuthenticationController@Index');
-Route::get('/login', 'AuthenticationController@Login');
-Route::get('/register', 'AuthenticationController@Register');
+Route::post('/login', 'AuthenticationController@login');
+Route::post('/register', 'AuthenticationController@Register');
 // Route::get('/', function () {
 //     return view('welcome');
 // });
@@ -25,3 +25,7 @@ Route::get('/problem', function () {
 Route::get('/profile', function () {
         return view('profile');
 });
+
+//Auth::routes();
+
+//Route::get('/home', 'HomeController@index')->name('home');

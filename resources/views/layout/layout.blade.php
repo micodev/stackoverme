@@ -155,6 +155,7 @@
     <script src="/js/uploader.js"></script>
     <script>
         $(document).ready(function () {
+            $('input[name="username"]').popup();
          //   $('.ui.sticky')
          //   .sticky('refresh')
          // ;

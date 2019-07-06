@@ -1,8 +1,6 @@
 require('lightbox2/dist/js/lightbox.js');
 require('./bootstrap');
 //window.Vue = require('vue');
-
-
  window.chartjs = require('chart.js');
  window.devicon = require('devicon');
 //<link href="alloy-editor/assets/alloy-editor-ocean-min.css" rel="stylesheet">

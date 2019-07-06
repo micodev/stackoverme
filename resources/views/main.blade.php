@@ -114,7 +114,7 @@
                         <div class="content">
                             <h5 class="header">Question title</h5>
                             <h3 class="header d-inline">by</h3>
-                            <h6 class="d-inline"><a class="header"><b>Bob's Burgers</b></a></h6>
+                            <h6 class="d-inline"><a class="header"><b>Bob Burgers</b></a></h6>
                             <div class="description">
                                 <div class="ui horizontal list">
                                     <div class="item" data-value="af">
@@ -159,88 +159,112 @@
         </div>
         <div class="four wide column">
             <!-- right column-->
+          @guest
             <div class="ui top attached inverted segment blue" style="border:0;text-align:center;" tabindex="0">Registeration</div>
             <div class="ui attached segment">
                 <div class="ui form">
-                <form action="login.php" method="post">
-               
-                    <div class="field">
-                        <div class="ui left corner labeled fluid input">
-                            <input type="type" placeholder="enter first name....">
-                            <div class="ui left corner label">
-                                <i class="user icon"></i>
+                    <form action="register" method="post">
+                        {{ csrf_field() }}
+                        <div class="field">
+                            <div class="ui left corner labeled fluid input">
+                                <input type="type" placeholder="enter first name...." name="firstname">
+                                <div class="ui left corner label">
+                                    <i class="user icon"></i>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="field">
-                        <div class="ui left corner labeled fluid input">
-                            <input type="type" placeholder="enter last name....">
-                            <div class="ui left corner label">
-                                <i class="user icon"></i>
+                        <div class="field">
+                            <div class="ui left corner labeled fluid input">
+                                <input type="type" placeholder="enter last name...." name="lastname">
+                                <div class="ui left corner label">
+                                    <i class="user icon"></i>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="field">
-                        <div class="ui left corner labeled fluid input">
-                            <input type="type" placeholder="enter username ....">
-                            <div class="ui left corner label">
-                                <i class="user icon"></i>
+                        <div class="field">
+                            <div class="ui left corner labeled fluid input">
+                                <input type="type" placeholder="enter username ...." name="username">
+                                <div class="ui left corner label">
+                                    <i class="user icon"></i>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="field">
-                        <!-- <i class="envelope icon"></i> -->
-                        <div class="ui left corner labeled fluid input">
-                            <input type="type" placeholder="enter email ....">
-                            <div class="ui left corner label">
-                                <i class="envelope icon"></i>
+                        <div class="field">
+                            <!-- <i class="envelope icon"></i> -->
+                            <div class="ui left corner labeled fluid input">
+                                <input type="type" placeholder="enter email ...." name="email">
+                                <div class="ui left corner label">
+                                    <i class="envelope icon"></i>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="field">
-                        <div class="ui left corner labeled fluid input">
-                            <input type="password" placeholder="enter password....">
-                            <div class="ui left corner label">
-                                <i class="asterisk icon"></i>
+                        <div class="field">
+                            <div class="ui left corner labeled fluid input">
+                                <input type="password" placeholder="enter password...." name="password">
+                                <div class="ui left corner label">
+                                    <i class="asterisk icon"></i>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="field">
-                        <button class="ui red tiny button" aria-label="label">
-                            register
-                        </button>
-                    </div>
-                     </form>
+                        <div class="field">
+                            <button class="ui red tiny button"  type="submit" aria-label="label">
+                                register
+                            </button>
+                        </div>
+                    </form>
                     <div class="ui horizontal divider header">
                         <i class="users icon"></i>
                         Login
                     </div>
-                    <form action="login.php" method="post">
-                    <div class="field">
+                    <form action="login" method="post">
+                            {{ csrf_field() }}
+                     <div class="field">
                         <div class="ui left corner labeled fluid input">
-                            <input type="type" placeholder="enter email or username....">
+                            <input type="type" placeholder="enter email or username...." name="username"
+                            data-position="top center"
+                            @if($errors->has("username"))
+                            data-content="{{$errors->first('username')}}"
+                            @endif
+                            >
                             <div class="ui left corner label">
                                 <i class="envelope icon"></i>
                             </div>
                         </div>
-                    </div>
-                    <div class="field">
+                     </div>
+                     <div class="field">
                         <div class="ui left corner labeled fluid input">
-                            <input type="password" placeholder="enter password....">
+                            <input type="password" placeholder="enter password...." name="password">
                             <div class="ui left corner label">
                                 <i class="asterisk icon"></i>
                             </div>
                         </div>
-                    </div>
-                    <div class="field">
-                        <button class="ui red tiny button" aria-label="label">
+                     </div>
+                     <div class="field">
+                        <button class="ui red tiny button" type="submit" aria-label="label">
                             sign-in
                         </button>
-                    </div>
+                     </div>
+                     <div class="field">
+                  
+                        <div class="alert alert-danger">
+                           {{$errors->first('username')}}
+                            {{$errors->first('warning')}}
+                        </div>
+                   
+                        @if (Session::get('warning') !=null)
+                                <ul>
+                                
+                                        <li>{{Session::get('warning') }}</li>
+                                
+                                </ul>
+                        @endif
+                        </div>
                     </form>
                 </div>
             </div>
-
+          @else
+          
+          @endguest
         </div>
     </div>
 </div>
