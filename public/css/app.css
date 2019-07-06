@@ -214,6 +214,6 @@ h6 {
 }
 
 .redborder {
-  border: red 1px solid;
+  border: red 1px solid !important;
 }
 

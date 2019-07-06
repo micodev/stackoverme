@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\Rules\username;
 use Auth;
 use Hash;
 use App\User;
@@ -27,7 +28,7 @@ class AuthenticationController extends Controller
     {
         //$this->middleware('guest')->except('profile');
     }
-   private function Validate_username_password($input) {
+   private function Validate_username_email($input) {
     if( filter_var($input, FILTER_VALIDATE_EMAIL))
     {
         return "email";
@@ -49,7 +50,7 @@ class AuthenticationController extends Controller
         $request = $request->only('username','password');
         $username = $request['username'];
         $password =$request['password'] ;
-        $isvalid = $this->Validate_username_password($username);
+        $isvalid = $this->Validate_username_email($username);
         if($isvalid =="username")
        {
            if (Auth::guard('admin')->attempt(['username' => $username, 'password' => $password, 'status' => 'active'])) {
@@ -80,7 +81,7 @@ class AuthenticationController extends Controller
         $request = $request->only('username','password');
         $username = $request['username'];
         $password =$request['password'] ;
-        $isvalid = $this->Validate_username_password($username);
+        $isvalid = $this->Validate_username_email($username);
 
         if($isvalid =="username")
        {
@@ -121,18 +122,21 @@ class AuthenticationController extends Controller
      public function register(Request $request)
     {
         $this->validate($request,[
-            'username'=>'unique:users',
+            'firstname'=>'min:3|max:9|regex:/^[a-zA-Z]+$/u',
+            'lastname'=>'min:3|max:9|regex:/^[a-zA-Z]+$/u',
+            'reusername'=>['unique:users,username',new username],
             'email'=> 'email|unique:users',
             'password'=>'required|string|min:6'
         ]);
-        $request = $request->only('username','password','firstname','lastname','email');
+        $request = $request->only('reusername','password','firstname','lastname','email');
         $firstname = $request['firstname'];
         $lastname =$request['lastname'];
         $username = $request['username'];
         $email = $request['email'];
         $password =$request['password'];
-        if($this->Validate_username_password($username) && $this->Validate_username_password($email))
+        if($this->Validate_username_email($username)=="username" && $this->Validate_username_email($email)=="email")
         {
+
             User::create([
                 'name' => $firstname." ".$lastname,
                 'username'=>strtolower($username),

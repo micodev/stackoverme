@@ -156,6 +156,9 @@
     <script>
         $(document).ready(function () {
             $('input[name="username"]').popup();
+            $('input[name="reusername"]').popup();
+            $('input[name="email"]').popup();
+            $('input[name="password"]').popup();
          //   $('.ui.sticky')
          //   .sticky('refresh')
          // ;

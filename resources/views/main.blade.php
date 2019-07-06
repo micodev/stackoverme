@@ -30,7 +30,7 @@
                         <div class="content">
                             <h5 class="header">Question title</h5>
                             <h3 class="header d-inline">by</h3>
-                            <h6 class="d-inline"><a class="header"><b>Bob's Burgers</b></a></h6>
+                            <h6 class="d-inline"><a class="header"><b>Bob s Burgers</b></a></h6>
                             <div class="description">
                                 <div class="ui horizontal list">
                                     <div class="item" data-value="af">
@@ -61,7 +61,7 @@
                                         </button>
                                         <button class="ui button">
                                             <i class="calendar icon"></i>
-                                            {{ Carbon\Carbon::now()->format('Y-m-d') }}
+                                            {{ Carbon\Carbon::now()->format("Y-m-d") }}
                                         </button>
                                     </div>
                                 </div>
@@ -72,7 +72,7 @@
                         <div class="content">
                             <h5 class="header">Question title</h5>
                             <h3 class="header d-inline">by</h3>
-                            <h6 class="d-inline"><a class="header"><b>Bob's Burgers</b></a></h6>
+                            <h6 class="d-inline"><a class="header"><b>Bob s Burgers</b></a></h6>
                             <div class="description">
                                 <div class="ui horizontal list">
                                     <div class="item" data-value="af">
@@ -183,8 +183,15 @@
                         </div>
                         <div class="field">
                             <div class="ui left corner labeled fluid input">
-                                <input type="type" placeholder="enter username ...." name="username">
-                                <div class="ui left corner label">
+                                <input type="type" placeholder="enter username ...." name="reusername"
+                                @if($errors->has("reusername"))
+                                    class="redborder"
+                                    data-content="{{$errors->first('reusername')}}"
+                                @endif
+                                >
+                                <div class="ui
+                                {{ $errors->has("reusername")?'red':'' }}
+                                 left corner label">
                                     <i class="user icon"></i>
                                 </div>
                             </div>
@@ -192,16 +199,30 @@
                         <div class="field">
                             <!-- <i class="envelope icon"></i> -->
                             <div class="ui left corner labeled fluid input">
-                                <input type="type" placeholder="enter email ...." name="email">
-                                <div class="ui left corner label">
+                                <input type="type" placeholder="enter email ...." name="email"
+                                @if($errors->has("email"))
+                                    class="redborder"
+                                    data-content="{{$errors->first('email')}}"
+                                @endif
+                                >
+                                <div class="ui
+                                {{ $errors->has("email")?'red':'' }}
+                                 left corner label">
                                     <i class="envelope icon"></i>
                                 </div>
                             </div>
                         </div>
                         <div class="field">
                             <div class="ui left corner labeled fluid input">
-                                <input type="password" placeholder="enter password...." name="password">
-                                <div class="ui left corner label">
+                                <input type="password" placeholder="enter password...." name="password"
+                                @if($errors->has("password"))
+                                class="redborder"
+                                data-content="{{$errors->first('password')}}"
+                                  @endif
+                                >
+                                <div class="ui
+                                {{ $errors->has("password")?'red':'' }}
+                                 left corner label">
                                     <i class="asterisk icon"></i>
                                 </div>
                             </div>
@@ -222,13 +243,15 @@
                         <div class="ui left corner labeled fluid input">
                             <input type="type" placeholder="enter email or username...." name="username"
                             data-position="top center"
-                            class="redborder"
-                            @if($errors->has("username"))
 
+                            @if($errors->has("username"))
+                            class="redborder"
                             data-content="{{$errors->first('username')}}"
                             @endif
                             >
-                            <div class="ui red left corner label">
+                            <div class="ui
+                            {{ $errors->has("username")?'red':'' }}
+                            left corner label">
                                 <i class="envelope icon"></i>
                             </div>
                         </div>
@@ -248,11 +271,15 @@
                      </div>
                      <div class="field">
 
+                        @if ($errors->any())
                         <div class="alert alert-danger">
-                           {{$errors->first('username')}}
-                            {{$errors->first('warning')}}
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
                         </div>
-
+                    @endif
                         @if (Session::get('warning') !=null)
                                 <ul>
 
