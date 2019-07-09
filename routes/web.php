@@ -22,6 +22,7 @@ Route::post('/createIssue', 'IssueFactoryController@CreateIssue');
 Route::get('/main', function () {
     return view('main');
 });
+Route::get('/problem/{id}','CreatedIssueController@Index');
 Route::get('/problem', function () {
     return view('problem');
 });

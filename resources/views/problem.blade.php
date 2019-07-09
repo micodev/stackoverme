@@ -9,44 +9,29 @@
 
                 <div class="ui top attached red segment" tabindex="0" style="text-align:left;">
                     <h2 class="ui fluid header problem_title">
-                        I have probelm in c# code
+                        {{ $post->title }}
                     </h2>
 
                 </div>
                 <div class="ui attached segment">
                     <div class="ui padded attached segment problem_body">
-                        <pre class="">code somecodesssssssssssssssssssssss
-    wow cosde</pre>
-                        <p><a href="http://google.com" target="_blank" class="">Textlink </a><br></p>
-                        <p style="text-align: right;">عربي</p>
-                        <p style="">english</p>
-                        <p style="">wow<font color="#e33737">&nbsp;wow</font>
-                        </p>
-                        <p style=""><span style="font-size: 1.5em;">wow</span></p>
-                        <p style=""><span style="font-size: medium;">dead</span></p>
-                        <p style=""><span style="font-size: medium;"><b>eoe</b></span></p>
-
+                        {!! $post->description !!}
                     </div>
                     <div class="ui horizontal bottom attached segment stackable segments">
-                        <div class="ui segment">
+                        @for ($i = 0; $i < 3; $i++)
+                            @if($i<count($imgs))
+                            <div class="ui segment">
+                                    <img class="ui small centered image" {{ stripslashes($imgs[$i]->image) }}>
 
-                            <img class="ui small centered image"
-                                src="https://fomantic-ui.com/images/wireframe/image-text.png">
+                                </div>
+                            @else
+                            <div class="ui segment">
 
-                        </div>
-                        <div class="ui segment">
-
-                            <img class="ui small centered image"
-                                src="https://fomantic-ui.com/images/wireframe/image-text.png">
-
-                        </div>
-                        <div class="ui segment">
-
-                            <img class="ui small centered image"
-                                src="https://fomantic-ui.com/images/wireframe/image-text.png">
-
-                        </div>
-
+                                    <img class="ui small centered image"
+                                        src="https://fomantic-ui.com/images/wireframe/image-text.png">
+                                </div>
+                            @endif
+                        @endfor
 
 
                     </div>

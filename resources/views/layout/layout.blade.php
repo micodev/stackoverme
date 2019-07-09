@@ -29,8 +29,11 @@
                     <img class="ui mini circular image" data-lightbox="roadtrip"
                         src="https://fomantic-ui.com/images/avatar2/small/eve.png">
                     <div class="content">
-                        <div class="ui sub header"> <span class="ui blue text">Molly</span></div>
-                        <span class="ui grey text">Coordinator</span>
+                        <div class="ui sub header"> <span class="ui blue text">
+                            {{  auth()->user()->name }} </span></div>
+                        <span class="ui grey text">
+                        {{ auth()->user()->role==10 ? "User" : "Lecturer" }}
+                        </span>
                     </div>
                 </div>
             </div>
@@ -219,9 +222,9 @@
                 toolbar: toolbar,
                 //optional options
             });
-            
-             
-            
+
+
+
         })
 
 

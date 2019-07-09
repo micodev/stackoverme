@@ -58,13 +58,13 @@ $(function(){
 
     })
     $(".post_issue,.post_comment").click(function(){
-        
+
         $("#body_problem").val(""+$(".simditor-body").html());
         $('.tags_input').val($(".tags").dropdown("get value")[1]);
         var imges = "";
         $('.upimages').children('.item').each(function () {
-          
-             imges=imges + "src='" + $(this).find( "img" ).attr("src") +"' thumb='" + $(this).find( "img" ).attr("thumb")+ "',"; // "this" is the current element in the loop
+
+             imges=imges + "src=" + $(this).find( "img" ).attr("src") +" thumb=" + $(this).find( "img" ).attr("thumb")+ ","; // "this" is the current element in the loop
         });
           $(".images_input").val(imges);
         //console.log( $("#body_problem").val());
