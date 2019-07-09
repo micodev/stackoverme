@@ -13,10 +13,13 @@ class Comment extends Model
     {
         return $this->belongsTo(Post::Class);
     }
-    public function Users()
+    public function User()
     {
         return $this->belongsTo(User::Class);
     }
-
+    public function Images()
+    {
+        return $this->hasMany(Cimage::Class);
+    }
 
 }

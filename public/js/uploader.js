@@ -72,6 +72,17 @@ $(function(){
         // $(".ui.relaxed.divided.list").children().remove();
         // $(".ui.relaxed.divided.list").append($(".simditor-body").children());
     })
+    // copy to clipboard
+
+$("#copyButton").click( function() {
+    console.log("somne");
+    var value= `<input value="${ $(this).attr("copy")}" id="selVal" style="position:absolute;top:-300px;" />`;
+    $('body').append(value);
+    $("#selVal").select();
+    document.execCommand("Copy");
+    $('body').find("#selVal").remove();
+});
+
 })
 }).call(this);
 

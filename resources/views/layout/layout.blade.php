@@ -168,7 +168,9 @@
     <script src="/js/simditor.js"></script>
     <script src="/js/uploader.js"></script>
     <script>
+
         $(document).ready(function () {
+
             $('input[name="username"]').popup();
             $('input[name="reusername"]').popup();
             $('input[name="email"]').popup();

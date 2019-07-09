@@ -16,7 +16,8 @@ class CommentMigration extends Migration
         Schema::create('comments', function (Blueprint $table) {
             $table->bigIncrements('id')->unique();
             //$table->string('title');
-            $table->string("description");
+            $table->longText("description");
+            $table->integer("like")->default(0);
             $table->integer('post_id')->unsigned()->nullable();
             $table->integer('user_id')->unsigned()->nullable();
             $table->softDeletes();

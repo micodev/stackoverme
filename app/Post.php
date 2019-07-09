@@ -20,12 +20,12 @@ class Post extends Model
     {
         return $this->hasMany(Comment::Class);
     }
-    public function Users()
+    public function User()
     {
         return $this->belongsTo(User::Class);
     }
     /**
-     * 
+     *
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
      */
@@ -37,6 +37,6 @@ class Post extends Model
     {
         return $this->belongsToMany('App\Tag');
     }
-    
+
 
 }

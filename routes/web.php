@@ -23,6 +23,7 @@ Route::get('/main', function () {
     return view('main');
 });
 Route::get('/problem/{id}','CreatedIssueController@Index');
+Route::post('/problem/{id}','CreatedIssueController@addComment');
 Route::get('/problem', function () {
     return view('problem');
 });

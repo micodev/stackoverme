@@ -16,7 +16,7 @@ class PostMigrate extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->bigIncrements('id')->unique();
             $table->string('title');
-            $table->string('description');
+            $table->longText('description');
             $table->integer("like")->default(0);
             $table->integer('comment')->default(0);
             $table->integer('user_id')->unsigned();
