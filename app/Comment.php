@@ -11,11 +11,11 @@ class Comment extends Model
     ];
     public function Posts()
     {
-        return $this->belongsToMany(Post::Class);
+        return $this->belongsTo(Post::Class);
     }
     public function Users()
     {
-        return $this->belongsToMany(User::Class);
+        return $this->belongsTo(User::Class);
     }
 
 

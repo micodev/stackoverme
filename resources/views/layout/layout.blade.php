@@ -22,6 +22,7 @@
 
 <body>
     <div class="ui sidebar inverted vertical menu">
+            @auth
         <a class="item">
             <div class="ui horizontal list">
                 <div class="item">
@@ -34,6 +35,7 @@
                 </div>
             </div>
         </a>
+        @endauth
         <a class="item">
             <div class="ui inverted accordion">
                 <div class="title">
@@ -43,18 +45,14 @@
                 <div class="content" style="margin-top: 5px;">
                     <div class="ui contianer">
                         <div class="ui fluid grid">
+                            @foreach (App\Tag::all() as $tag)
                             <div class="sixteen wide column item">
-                                <div class="d-inline"> Csharp </div> <i
-                                    class="devicon-csharp-plain-wordmark colored right float"></i>
-                            </div>
-                            <div class="sixteen wide column item">
-                                <div class="d-inline"> JavaScript </div> <i
-                                    class="devicon-javascript-plain right float colored"></i>
-                            </div>
-                            <div class="sixteen wide column item">
-                                <div class="d-inline"> NodeJs </div> <i
-                                    class="devicon-nodejs-plain right float colored"></i>
-                            </div>
+                                    <div class="d-inline">{{ $tag->name }} </div> <i
+                                        class="{{ $tag->Icon }} colored right float"></i>
+                                </div>
+                            @endforeach
+
+
                         </div>
                     </div>
 
@@ -63,12 +61,20 @@
             </div>
 
         </a>
-        <a class="item">
-            <i class="sign out alternate icon"></i> LogOut
+        @auth
+        <form action="/logout" method="POST" id="logout">
+        <a class="item"  href="javascript:{}" onclick="document.getElementById('logout').submit(); return false;">
+
+                {{ csrf_field() }}
+                <i class="sign out alternate icon" ></i> LogOut
+
+
         </a>
-        <a class="item">
+    </form>
+        @endauth
+        {{--  <a class="item">
             All rights reserved 2019 ©.
-        </a>
+        </a>  --}}
     </div>
     <div class="pusher">
 
@@ -77,6 +83,11 @@
                 <i class="code icon"></i>
             </a>
             <div class="right menu">
+                @auth
+                <a  href="/createIssue" class="ui icon link item">
+                       <i class="plus icon"></i>
+                </a>
+                @endauth
                 <div class="ui icon top left pointing dropdown link item">
                     <i class="inbox icon"></i>
                     <div class="menu">
@@ -208,6 +219,9 @@
                 toolbar: toolbar,
                 //optional options
             });
+            
+             
+            
         })
 
 

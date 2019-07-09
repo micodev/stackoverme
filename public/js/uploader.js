@@ -58,9 +58,19 @@ $(function(){
 
     })
     $(".post_issue,.post_comment").click(function(){
-        console.log( $(".simditor-body").html());
-        $(".ui.relaxed.divided.list").children().remove();
-        $(".ui.relaxed.divided.list").append($(".simditor-body").children());
+        
+        $("#body_problem").val(""+$(".simditor-body").html());
+        $('.tags_input').val($(".tags").dropdown("get value")[1]);
+        var imges = "";
+        $('.upimages').children('.item').each(function () {
+          
+             imges=imges + "src='" + $(this).find( "img" ).attr("src") +"' thumb='" + $(this).find( "img" ).attr("thumb")+ "',"; // "this" is the current element in the loop
+        });
+          $(".images_input").val(imges);
+        //console.log( $("#body_problem").val());
+        document.forms["createissue"].submit();
+        // $(".ui.relaxed.divided.list").children().remove();
+        // $(".ui.relaxed.divided.list").append($(".simditor-body").children());
     })
 })
 }).call(this);

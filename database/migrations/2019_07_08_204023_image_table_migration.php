@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CommentUserMigration extends Migration
+class ImageTableMigration extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CommentUserMigration extends Migration
      */
     public function up()
     {
-        Schema::create('user_comment', function (Blueprint $table) {
+        Schema::create('images', function (Blueprint $table) {
             $table->bigIncrements('id')->unique();
-            $table->integer('user_id')->unsigned();
-            $table->integer('comment_id')->unsigned();
+            $table->string('image');
+            $table->integer('post_id')->unsigned()->nullable();
         });
     }
 
@@ -27,6 +27,6 @@ class CommentUserMigration extends Migration
      */
     public function down()
     {
-          Schema::dropIfExists('user_comment');
+        Schema::dropIfExists('images');
     }
 }

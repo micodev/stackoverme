@@ -131,7 +131,7 @@ class AuthenticationController extends Controller
         $request = $request->only('reusername','password','firstname','lastname','email');
         $firstname = $request['firstname'];
         $lastname =$request['lastname'];
-        $username = $request['username'];
+        $username = $request['reusername'];
         $email = $request['email'];
         $password =$request['password'];
         if($this->Validate_username_email($username)=="username" && $this->Validate_username_email($email)=="email")

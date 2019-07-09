@@ -16,14 +16,27 @@ class Post extends Model
     protected $fillable = [
         'title', 'description', 'like','comment','user_id'
     ];
-    public function comments()
+    public function Comments()
     {
         return $this->hasMany(Comment::Class);
     }
-    public function users()
+    public function Users()
     {
-        return $this->belongsToMany(User::Class);
+        return $this->belongsTo(User::Class);
     }
-
+    /**
+     * 
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
+     */
+    public function Images()
+    {
+        return $this->hasMany("App\Image");
+    }
+    public function Tags()
+    {
+        return $this->belongsToMany('App\Tag');
+    }
+    
 
 }

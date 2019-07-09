@@ -1,9 +1,10 @@
 @extends('layout.layout')
 @section('content')
 <div class="ui relaxed centered grid">
-    <div class="three column row">
 
-        <div class="column">
+    <div class="three column row @auth {{ 'centered' }} @endauth ">
+
+        <div class="column @auth {{ 'centered seven wide ' }} @endauth">
             <!-- left column-->
             <div class="row">
                 <h2 class="ui header">

@@ -15,8 +15,8 @@ class PostTagMigration extends Migration
     {
         Schema::create('post_tag', function (Blueprint $table) {
             $table->bigIncrements('id')->unique();
-            $table->integer('tag_id')->unsigned();
-            $table->integer('post_id')->unsigned();
+            $table->integer('tag_id')->unsigned()->nullable();
+            $table->integer('post_id')->unsigned()->nullable();
         });
     }
 

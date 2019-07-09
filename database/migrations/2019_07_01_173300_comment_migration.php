@@ -17,6 +17,8 @@ class CommentMigration extends Migration
             $table->bigIncrements('id')->unique();
             //$table->string('title');
             $table->string("description");
+            $table->integer('post_id')->unsigned()->nullable();
+            $table->integer('user_id')->unsigned()->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

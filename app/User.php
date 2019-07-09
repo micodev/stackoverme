@@ -38,15 +38,15 @@ class User extends Authenticatable
     // ];
 
     
-    public function comments()
+    public function Comments()
     {
         return $this->hasMany('App\Comment');
     }
-    public function posts()
+    public function Posts()
     {
         return $this->hasMany('App\Post');
     }
-   public function profile()
+   public function Profile()
    {
        return $this->hasOne('App\Profile');
    }
