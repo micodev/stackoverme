@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Post;
 use App\Comment;
 use App\Cimage;
+use App\Subcomment;
 
 class CreatedIssueController extends Controller
 {
@@ -47,6 +48,15 @@ class CreatedIssueController extends Controller
         $post->Comments()->save($comment);
         $user->Comments()->save($comment);
         $comment->Images()->saveMany($this->serlize_img($request->images));
+        return "success";
+    }
+    public function subcomment(Request $request,$id)
+    {
+        $comment = Comment::find($request["commentId"]);
+        $subcomment = New Subcomment;
+        $subcomment->description = $request["comment"];
+        $comment->Subcomments()->save($subcomment);
+        auth()->user()->Subcomments()->save($subcomment);
         return "success";
     }
 }

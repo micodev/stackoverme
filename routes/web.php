@@ -24,6 +24,7 @@ Route::get('/main', function () {
 });
 Route::get('/problem/{id}','CreatedIssueController@Index');
 Route::post('/problem/{id}','CreatedIssueController@addComment');
+Route::post('/problem/{id}/subcomment','CreatedIssueController@subcomment');
 Route::get('/problem', function () {
     return view('problem');
 });

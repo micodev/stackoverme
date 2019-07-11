@@ -21,5 +21,8 @@ class Comment extends Model
     {
         return $this->hasMany(Cimage::Class);
     }
-
+    public function Subcomments()
+    {
+        return $this->hasMany('App\Subcomment');
+    }
 }

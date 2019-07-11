@@ -123,7 +123,7 @@
                                     30
                                 </button>
                                 <button class="ui  icon button comment-button blue right c-submenu"
-                                    aria-label="label">
+                                     commentId="{{ $comment->id}}">
                                     <i class="comment alternate icon"></i>
                                 </button>
                                 <button class="ui icon button blue seg-attached-right c-submenu" aria-label="label">
@@ -132,34 +132,27 @@
 
                             </div>
                             <div class="ui celled list">
+                                @foreach ($comment->Subcomments()->get() as $subcomment )
                                 <div class="item" style="margin-top:10px;">
 
-                                    <i class="ui avatar user icon"></i>
-                                    <div class="content">
-                                        <a class="header">Rachel</a>
-                                        <div class="description d-inline">Last seen watching <a
-                                                class="header d-inline"><b>@micodev</b></a> just now.</div>
-                                        <button class="circular ui icon right floated mini button">
-                                            <i class="reply icon"></i>
-                                        </button>
+                                        <i class="ui avatar user icon"></i>
+                                        <div class="content">
+                                            <a class="header">{{ $subcomment->User->name }}</a>
+                                            <div class="description d-inline" style="margin-top: 12px;">
+                                                    {{--  Last seen watching <a
+                                                    class="header d-inline"><b>@micodev</b></a> just now.  --}}
+                                                    {{ $subcomment->description }}
+                                            </div>
+                                            <button class="circular ui icon right floated mini button">
+                                                <i class="reply icon"></i>
+                                            </button>
+                                        </div>
+
+
                                     </div>
+                                @endforeach
 
 
-                                </div>
-                                <div class="item" style="margin-top:10px;">
-
-                                    <i class="ui avatar user icon"></i>
-                                    <div class="content">
-                                        <a class="header">Rachel</a>
-                                        <div class="description d-inline">Last seen watching <a
-                                                class="header d-inline"><b>@micodev</b></a> just now.</div>
-                                        <button class="circular ui icon right floated mini button">
-                                            <i class="reply icon"></i>
-                                        </button>
-                                    </div>
-
-
-                                </div>
                             </div>
                         </div>
                     @endforeach
@@ -216,8 +209,9 @@
         <span class="ui medium red text">A</span>dd a comment
     </div>
     <div class="content">
+
         <div class="ui left corner labeled input fluid">
-            <input type="type" placeholder="Insert comment here...">
+            <input type="text" placeholder="Insert comment here..." class="subcomment_field">
             <div class="ui left corner label">
                 <i class="comment icon"></i>
             </div>
@@ -227,10 +221,38 @@
         <div class="ui negative button">
             cancel
         </div>
-        <div class="ui positive right labeled icon button">
+        <div class="ui positive right labeled icon button make_sub_comment">
             send
             <i class="checkmark icon"></i>
         </div>
     </div>
 </div>
+@endsection
+@section('subcomment_post')
+    var commentid = 0;
+    $('.comment-button').on('click', function () {
+        commentid = $(this).attr("commentId");
+        $('.ui.modal')
+            .modal({
+                centered: true,
+                blurring: true,
+                transition: 'zoom'
+            })
+            .modal('show');
+    })
+    $(".make_sub_comment").click(function(e){
+        var val = $(".subcomment_field").val();
+
+        var post = {
+            "commentId" : commentid,
+            "comment" : val
+        };
+        axios.post('/problem/{{ $id }}/subcomment', post)
+                .then(res => {
+                    console.log(res.data);
+                }).catch(err => {
+                console.log(err)
+            })
+
+    });
 @endsection

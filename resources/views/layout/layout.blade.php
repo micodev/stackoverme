@@ -170,6 +170,12 @@
     <script>
 
         $(document).ready(function () {
+            @yield("subcomment_post")
+
+
+
+
+
 
             $('input[name="username"]').popup();
             $('input[name="reusername"]').popup();
@@ -196,16 +202,7 @@
             $('.ui.grey.circular.label')
                 .popup();
 
-            $('.comment-button').on('click', function () {
 
-                $('.ui.modal')
-                    .modal({
-                        centered: true,
-                        blurring: true,
-                        transition: 'zoom'
-                    })
-                    .modal('show');
-            })
             $('.image').dimmer({
                 on: 'hover'
             });

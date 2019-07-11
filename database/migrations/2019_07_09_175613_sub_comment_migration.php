@@ -13,7 +13,14 @@ class SubCommentMigration extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('subcomments', function (Blueprint $table) {
+            $table->bigIncrements('id')->unique();
+            $table->longText('description');
+            $table->integer('comment_id')->unsigned()->nullable();
+            $table->integer('user_id')->unsigned()->nullable();
+            $table->softDeletes();
+            $table->timestamps();
+        });
     }
 
     /**
@@ -23,6 +30,6 @@ class SubCommentMigration extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('subcomments');
     }
 }

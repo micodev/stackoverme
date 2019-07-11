@@ -74,14 +74,15 @@ $(function(){
     })
     // copy to clipboard
 
-$("#copyButton").click( function() {
-    console.log("somne");
-    var value= `<input value="${ $(this).attr("copy")}" id="selVal" style="position:absolute;top:-300px;" />`;
-    $('body').append(value);
-    $("#selVal").select();
-    document.execCommand("Copy");
-    $('body').find("#selVal").remove();
-});
+    $("#copyButton").click( function() {
+        console.log("somne");
+        var value= `<input value="${ $(this).attr("copy")}" id="selVal" style="position:absolute;top:-300px;" />`;
+        $('body').append(value);
+        $("#selVal").select();
+        document.execCommand("Copy");
+        $('body').find("#selVal").remove();
+    });
+
 
 })
 }).call(this);
