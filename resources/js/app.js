@@ -1,8 +1,17 @@
 require('lightbox2/dist/js/lightbox.js');
 require('./bootstrap');
-//window.Vue = require('vue');
- window.chartjs = require('chart.js');
- window.devicon = require('devicon');
+
+window.Vue = require('vue');
+
+import VueRouter from 'vue-router';
+Vue.use(VueRouter);
+
+import VueAxios from 'vue-axios';
+import axios from 'axios';
+Vue.use(VueAxios, axios);
+window.chartjs = require('chart.js');
+window.devicon = require('devicon');
+
 //<link href="alloy-editor/assets/alloy-editor-ocean-min.css" rel="stylesheet">
 //<script src="alloy-editor/alloy-editor-all-min.js"></script>
 //require('./ckeditor/ckeditor.js');
@@ -100,21 +109,24 @@ var myChart2 = new Chart(cty, {
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
 
-// const files = require.context('./', true, /\.vue$/i);
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
+//  const files = require.context('./', true, /\.vue$/i);
+//   files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
-//Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+Vue.component('example-component', require('./components/ExampleComponent.vue'));
+const app = new Vue({
+    el: '#app',
 
-// const app = new Vue({
-//     el: '#app',
-// });
+});
+
 // var iframe = document.getElementsByTagName("iframe"); //this.frameElement;
 // console.log(iframe);
 // var xiframe = iframe.contentWindow;
 // console.log( xiframe.document.getElementsByTagName("body") );
+

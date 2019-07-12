@@ -15,7 +15,7 @@ $(function(){
         var api="07330fd01957e18b1ad6a0e07954d026";
         var count = 0;
         $.each(files, function(i, file){
-            var content = '<div class="item"><a class="ui teal image medium label dimmable"><img src="https://fomantic-ui.com/images/avatar/small/joe.jpg"><div class="ui teal double loading button" style="padding:0 !important">upload</div><div class="ui dimmer transition hidden"></div></a></div>';
+            var content = '<div class="item"><a class="ui teal image medium label"><img src="https://fomantic-ui.com/images/avatar/small/joe.jpg"><div class="ui teal double loading button" style="padding:0 !important">upload</div><div class="ui dimmer transition hidden"></div></a></div>';
             $(".upimages").append(content);
             count++;
         });

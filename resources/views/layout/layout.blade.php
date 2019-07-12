@@ -136,8 +136,11 @@
         </div>
         <div class="main-content">
 
-            @yield('content')
+            {{--  @yield('content')  --}}
 
+            <div id="app">
+                    <example-component></example-component>
+            </div>
 
         </div>
 
@@ -152,6 +155,8 @@
             </div>
           </footer>
     </div>
+
+
 
 
     <!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script> -->
@@ -170,13 +175,6 @@
     <script>
 
         $(document).ready(function () {
-            @yield("subcomment_post")
-
-
-
-
-
-
             $('input[name="username"]').popup();
             $('input[name="reusername"]').popup();
             $('input[name="email"]').popup();
@@ -203,9 +201,7 @@
                 .popup();
 
 
-            $('.image').dimmer({
-                on: 'hover'
-            });
+
 
             $('.sideclick').click(function () {
 

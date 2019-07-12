@@ -96,7 +96,7 @@
                 <div class="ui fluid piled raised segments">
                     @foreach ( $comments->get() as $comment )
                     <div class="ui segment blue">
-                            <a class="ui grey ribbon label"> <i class="info icon"></i> </a>
+                            <a class="ui grey ribbon label" commentId="{{ $comment->id}}"> <i class="info icon"></i> </a>
                             <div class="ui divider horizontal clearing"></div>
                             <h2 class="ui tiny header d-inline comment-seg">
                                 <i class="user icon"></i>
@@ -108,29 +108,44 @@
 
                                 </div>
                             </h2>
-                            <div class="activatior">
-                                <div class="ui tall stacked segment comment_body">
-                                    {!! $comment->description !!}
-                                </div>
-                            </div>
-                            <div class=" ui flowing popup bottom left transition hidden">
-                                <button class="ui icon button" aria-label="is_correct">
-                                    <i class="check icon green"></i>
-                                </button>
-                                <button class="ui labeled icon button red right  seg-attached-left c-submenu"
-                                    aria-label="label">
-                                    <i class="like icon"></i>
-                                    30
-                                </button>
-                                <button class="ui  icon button comment-button blue right c-submenu"
-                                     commentId="{{ $comment->id}}">
-                                    <i class="comment alternate icon"></i>
-                                </button>
-                                <button class="ui icon button blue seg-attached-right c-submenu" aria-label="label">
-                                    <i class="share icon"></i>
-                                </button>
+
+                            <div class="ui tall stacked segment comment_body">
+                                    <div class="activatior">
+                                        {!! $comment->description !!}
+                                    </div>
+                                    <div class=" ui flowing popup bottom left transition hidden">
+                                            <button class="ui icon button" aria-label="is_correct">
+                                                <i class="check icon green"></i>
+                                            </button>
+                                            <button class="ui labeled icon button red right  seg-attached-left c-submenu"
+                                                aria-label="label">
+                                                <i class="like icon"></i>
+                                                30
+                                            </button>
+                                            <button class="ui  icon button comment-button blue right c-submenu"
+                                                 commentId="{{ $comment->id}}">
+                                                <i class="comment alternate icon"></i>
+                                            </button>
+                                            <button class="ui icon button blue seg-attached-right c-submenu" aria-label="label">
+                                                <i class="share icon"></i>
+                                            </button>
+
+                                    </div>
+                                    <h4 class="ui horizontal divider header">
+                                        <i class="tag icon"></i>
+                                        Attachments
+                                    </h4>
+
+                                    <div class="ui horizontal list">
+                                        @foreach ($comment->Images()->get() as $image )
+                                        <div class="item" style="width:50px !important"><a class="ui image medium label" style="padding-right:0px !important;width:100% !important;"><img {{ $image->image }} onclick=lightit(this) style="margin: 0;width:100% !important;"></a></div>
+                                         @endforeach
+                                    </div>
+
+
 
                             </div>
+
                             <div class="ui celled list">
                                 @foreach ($comment->Subcomments()->get() as $subcomment )
                                 <div class="item" style="margin-top:10px;">
