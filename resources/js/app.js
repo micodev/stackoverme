@@ -1,13 +1,12 @@
 require('lightbox2/dist/js/lightbox.js');
 require('./bootstrap');
-
 window.Vue = require('vue');
-
-import VueRouter from 'vue-router';
-Vue.use(VueRouter);
-
 import VueAxios from 'vue-axios';
 import axios from 'axios';
+axios.defaults.headers.common = {
+    'X-Requested-With': 'XMLHttpRequest',
+    'X-CSRF-TOKEN': window.csrf_token
+  };
 Vue.use(VueAxios, axios);
 window.chartjs = require('chart.js');
 window.devicon = require('devicon');
@@ -21,6 +20,7 @@ window.devicon = require('devicon');
 
 var ctx = document.getElementById('voteChart');
 var cty = document.getElementById('likeChart');
+if(ctx !=null && cty !=null){
 ctx.style.width='100%';
 ctx.style.height='100%';
 ctx.width  = ctx.offsetWidth;
@@ -101,6 +101,7 @@ var myChart2 = new Chart(cty, {
         }
     }
 });
+}
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -109,20 +110,17 @@ var myChart2 = new Chart(cty, {
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
 
-//  const files = require.context('./', true, /\.vue$/i);
-//   files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
+ const files = require.context('./', true, /\.vue$/i);
+  files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
-// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-
+Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('comment-component', require('./components/CommentComponent.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
+ * or customize the JavaScript scaffolding to fit your unique needs.*/
 const app = new Vue({
     el: '#app',
-
 });
 
 // var iframe = document.getElementsByTagName("iframe"); //this.frameElement;

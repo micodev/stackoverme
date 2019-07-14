@@ -93,9 +93,14 @@
         </div>
         <div class="ui row">
             <div class="ui nine wide column">
-                <div class="ui fluid piled raised segments">
-                    @foreach ( $comments->get() as $comment )
-                    <div class="ui segment blue">
+
+                    <div id="app">
+                            <comment-component :post_id="'{!! $id !!}'" ></comment-component>
+                    </div>
+
+                    {{--
+                        @foreach ( $comments->get() as $comment )
+                        <div class="ui segment blue">
                             <a class="ui grey ribbon label" commentId="{{ $comment->id}}"> <i class="info icon"></i> </a>
                             <div class="ui divider horizontal clearing"></div>
                             <h2 class="ui tiny header d-inline comment-seg">
@@ -155,7 +160,7 @@
                                             <a class="header">{{ $subcomment->User->name }}</a>
                                             <div class="description d-inline" style="margin-top: 12px;">
                                                     {{--  Last seen watching <a
-                                                    class="header d-inline"><b>@micodev</b></a> just now.  --}}
+                                                    class="header d-inline"><b>@micodev</b></a> just now.  --/}}
                                                     {{ $subcomment->description }}
                                             </div>
                                             <button class="circular ui icon right floated mini button">
@@ -170,8 +175,13 @@
 
                             </div>
                         </div>
-                    @endforeach
-                </div>
+                     @endforeach
+                     --}}
+
+
+
+
+
             </div>
         </div>
 
@@ -218,30 +228,6 @@
 
 </div>
 
-<!-- comment modal -->
-<div class="ui large modal">
-    <div class="header">
-        <span class="ui medium red text">A</span>dd a comment
-    </div>
-    <div class="content">
-
-        <div class="ui left corner labeled input fluid">
-            <input type="text" placeholder="Insert comment here..." class="subcomment_field">
-            <div class="ui left corner label">
-                <i class="comment icon"></i>
-            </div>
-        </div>
-    </div>
-    <div class="actions">
-        <div class="ui negative button">
-            cancel
-        </div>
-        <div class="ui positive right labeled icon button make_sub_comment">
-            send
-            <i class="checkmark icon"></i>
-        </div>
-    </div>
-</div>
 @endsection
 @section('subcomment_post')
     var commentid = 0;

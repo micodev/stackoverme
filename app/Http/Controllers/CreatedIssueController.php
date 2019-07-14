@@ -48,7 +48,7 @@ class CreatedIssueController extends Controller
         $post->Comments()->save($comment);
         $user->Comments()->save($comment);
         $comment->Images()->saveMany($this->serlize_img($request->images));
-        return "success";
+        return  back();
     }
     public function subcomment(Request $request,$id)
     {

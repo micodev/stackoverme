@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Laravel</title>
-
-    <!-- Fonts -->
+   <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
     <script>
@@ -136,11 +135,9 @@
         </div>
         <div class="main-content">
 
-            {{--  @yield('content')  --}}
+            @yield('content')
 
-            <div id="app">
-                    <example-component></example-component>
-            </div>
+
 
         </div>
 
@@ -168,6 +165,7 @@
     <link rel="stylesheet" type="text/css" href="/css/extra.css">
     <script src="/js/app.js"></script>
     <script src="/semantic/dist/semantic.min.js"></script>
+
     <script src="/js/module.js"></script>
     <script src="/js/hotkeys.js"></script>
     <script src="/js/simditor.js"></script>
@@ -210,6 +208,7 @@
             });
             $('.ui.dropdown').dropdown();
             $(function () {
+            if(!$("#editor").is(null)) {
             Simditor.locale = 'en-US';
             toolbar = ['bold','strikethrough', 'fontScale', 'color', 'ol', 'code', 'link' , 'alignment'];
             var editor = new Simditor({
@@ -217,6 +216,7 @@
                 toolbar: toolbar,
                 //optional options
             });
+        }
 
 
 
