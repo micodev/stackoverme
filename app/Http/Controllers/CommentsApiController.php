@@ -25,9 +25,7 @@ class CommentsApiController extends Controller
     }
     public function CreateSubcomment(Request $request,$id)
     {
-
         $comment = Comment::find($request["commentId"]);
-
         $subcomment = New Subcomment;
         $subcomment->description = $request["comment"];
         $comment->Subcomments()->save($subcomment);

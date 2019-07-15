@@ -41,10 +41,12 @@ class CreatedIssueController extends Controller
     }
     public function addComment(Request $request,$id)
     {
-
         // user - post - image
         $user = auth()->user();
         $post =Post::find($id);
+        $post->User;
+        if($post->User->id == $user->id)
+        return back()->withErrors(["error"]);
         $comment = New Comment;
         $comment->description = $request->body_problem;
         $post->Comments()->save($comment);

@@ -18,6 +18,7 @@ class CommentMigration extends Migration
             //$table->string('title');
             $table->longText("description");
             $table->integer("like")->default(0);
+            $table->boolean("is_correct")->default(0);
             $table->integer('post_id')->unsigned()->nullable();
             $table->integer('user_id')->unsigned()->nullable();
             $table->softDeletes();

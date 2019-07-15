@@ -2,7 +2,18 @@
   <div class="ui fluid piled raised segments">
         <div v-for="comment in comments" v-bind="comment" :key="comment.id" class="ui segment blue">
                             <!-- commentId="{{ $comment->id}}"-->
-                            <a class="ui grey ribbon label"  :commentId="comment.id" > <i class="info icon"></i> </a>
+                            <!-- class="ui grey ribbon label" -->
+                            <a
+
+                                v-bind:class="[comment.is_correct ? 'green' : 'grey','ui ribbon label']"
+
+                                :commentId="comment.id" >
+                                <!--   class="info icon"-->
+                                 <i
+                                     v-bind:class="[comment.is_correct ? 'check icon' : 'info icon']"
+
+                                  ></i>
+                            </a>
                             <div class="ui divider horizontal clearing"></div>
                             <h2 class="ui tiny header d-inline comment-seg">
                                 <i class="user icon"></i>
@@ -24,8 +35,8 @@
                                       <!--{!! $comment->description !!}-->
                                     </div>
                                     <div class=" ui flowing popup bottom left transition hidden">
-                                            <button class="ui icon button" aria-label="is_correct">
-                                                <i class="check icon green"></i>
+                                            <button v-bind:class="[comment.is_correct==1?'tret grey':'green','ui icon button']" @click="isCorrectFun(comment)"  aria-label="is_correct">
+                                                <i v-bind:class="[comment.is_correct==1?'green':'white','check icon']"></i>
                                             </button>
                                             <button class="ui labeled icon button red right  seg-attached-left c-submenu"
                                                 aria-label="label">
@@ -151,6 +162,7 @@ export default {
                 window.axios.get('/api/comments/'+this.post_id).then(({ data }) => {
                     data.forEach(dat => {
                         this.comments.push(dat);
+                        console.log(this.comments);
                         //this.comments.forEach()
                     });
 
@@ -187,6 +199,15 @@ export default {
                         this.commendId=0;
 
                 });
+            },
+            isCorrectFun(commenta){
+
+                  var comment = this.comments.filter(function(comment){
+                            return comment.is_correct ==1;
+                        });
+                        console.log(comment);
+                    comment[0].is_correct=0;
+                    commenta.is_correct=1;
             }
 
         },

@@ -1996,6 +1996,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['post_id'],
   data: function data() {
@@ -2012,8 +2023,9 @@ __webpack_require__.r(__webpack_exports__);
       window.axios.get('/api/comments/' + this.post_id).then(function (_ref) {
         var data = _ref.data;
         data.forEach(function (dat) {
-          _this.comments.push(dat); //this.comments.forEach()
+          _this.comments.push(dat);
 
+          console.log(_this.comments); //this.comments.forEach()
         });
       });
     },
@@ -2048,6 +2060,14 @@ __webpack_require__.r(__webpack_exports__);
         _this2.subComment = "";
         _this2.commendId = 0;
       });
+    },
+    isCorrectFun: function isCorrectFun(commenta) {
+      var comment = this.comments.filter(function (comment) {
+        return comment.is_correct == 1;
+      });
+      console.log(comment);
+      comment[0].is_correct = 0;
+      commenta.is_correct = 1;
     }
   },
   beforeMount: function beforeMount() {},
@@ -63897,10 +63917,17 @@ var render = function() {
             _c(
               "a",
               {
-                staticClass: "ui grey ribbon label",
+                class: [
+                  comment.is_correct ? "green" : "grey",
+                  "ui ribbon label"
+                ],
                 attrs: { commentId: comment.id }
               },
-              [_c("i", { staticClass: "info icon" })]
+              [
+                _c("i", {
+                  class: [comment.is_correct ? "check icon" : "info icon"]
+                })
+              ]
             ),
             _vm._v(" "),
             _c("div", { staticClass: "ui divider horizontal clearing" }),
@@ -63949,9 +63976,31 @@ var render = function() {
                   staticClass: " ui flowing popup bottom left transition hidden"
                 },
                 [
-                  _vm._m(0, true),
+                  _c(
+                    "button",
+                    {
+                      class: [
+                        comment.is_correct == 1 ? "tret grey" : "green",
+                        "ui icon button"
+                      ],
+                      attrs: { "aria-label": "is_correct" },
+                      on: {
+                        click: function($event) {
+                          return _vm.isCorrectFun(comment)
+                        }
+                      }
+                    },
+                    [
+                      _c("i", {
+                        class: [
+                          comment.is_correct == 1 ? "green" : "white",
+                          "check icon"
+                        ]
+                      })
+                    ]
+                  ),
                   _vm._v(" "),
-                  _vm._m(1, true),
+                  _vm._m(0, true),
                   _vm._v(" "),
                   _c(
                     "button",
@@ -63967,11 +64016,11 @@ var render = function() {
                     [_c("i", { staticClass: "comment alternate icon" })]
                   ),
                   _vm._v(" "),
-                  _vm._m(2, true)
+                  _vm._m(1, true)
                 ]
               ),
               _vm._v(" "),
-              _vm._m(3, true),
+              _vm._m(2, true),
               _vm._v(" "),
               _c(
                 "div",
@@ -64052,7 +64101,7 @@ var render = function() {
                         )
                       ]),
                       _vm._v(" "),
-                      _vm._m(4, true)
+                      _vm._m(3, true)
                     ]),
                     _vm._v(" "),
                     _c("div", {
@@ -64069,7 +64118,7 @@ var render = function() {
       }),
       _vm._v(" "),
       _c("div", { staticClass: "ui large modal" }, [
-        _vm._m(5),
+        _vm._m(4),
         _vm._v(" "),
         _c("div", { staticClass: "content" }, [
           _c("div", { staticClass: "ui left corner labeled input fluid" }, [
@@ -64095,7 +64144,7 @@ var render = function() {
               }
             }),
             _vm._v(" "),
-            _vm._m(6)
+            _vm._m(5)
           ])
         ]),
         _vm._v(" "),
@@ -64126,16 +64175,6 @@ var render = function() {
   )
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      { staticClass: "ui icon button", attrs: { "aria-label": "is_correct" } },
-      [_c("i", { staticClass: "check icon green" })]
-    )
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
