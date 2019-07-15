@@ -63980,7 +63980,7 @@ var render = function() {
                     "button",
                     {
                       class: [
-                        comment.is_correct == 1 ? "tret grey" : "green",
+                        comment.is_correct == 1 ? "grey" : "green",
                         "ui icon button"
                       ],
                       attrs: { "aria-label": "is_correct" },

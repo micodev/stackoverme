@@ -35,7 +35,7 @@
                                       <!--{!! $comment->description !!}-->
                                     </div>
                                     <div class=" ui flowing popup bottom left transition hidden">
-                                            <button v-bind:class="[comment.is_correct==1?'tret grey':'green','ui icon button']" @click="isCorrectFun(comment)"  aria-label="is_correct">
+                                            <button v-bind:class="[comment.is_correct==1?'grey':'green','ui icon button']" @click="isCorrectFun(comment)"  aria-label="is_correct">
                                                 <i v-bind:class="[comment.is_correct==1?'green':'white','check icon']"></i>
                                             </button>
                                             <button class="ui labeled icon button red right  seg-attached-left c-submenu"
