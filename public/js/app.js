@@ -64000,7 +64000,22 @@ var render = function() {
                     ]
                   ),
                   _vm._v(" "),
-                  _vm._m(0, true),
+                  _c(
+                    "button",
+                    {
+                      staticClass:
+                        "ui labeled icon button red right  seg-attached-left c-submenu",
+                      attrs: { "aria-label": "label" }
+                    },
+                    [
+                      _c("i", { staticClass: "like icon" }),
+                      _vm._v(
+                        "\n                                              " +
+                          _vm._s(comment.like) +
+                          "\n                                          "
+                      )
+                    ]
+                  ),
                   _vm._v(" "),
                   _c(
                     "button",
@@ -64016,11 +64031,11 @@ var render = function() {
                     [_c("i", { staticClass: "comment alternate icon" })]
                   ),
                   _vm._v(" "),
-                  _vm._m(1, true)
+                  _vm._m(0, true)
                 ]
               ),
               _vm._v(" "),
-              _vm._m(2, true),
+              _vm._m(1, true),
               _vm._v(" "),
               _c(
                 "div",
@@ -64101,7 +64116,7 @@ var render = function() {
                         )
                       ]),
                       _vm._v(" "),
-                      _vm._m(3, true)
+                      _vm._m(2, true)
                     ]),
                     _vm._v(" "),
                     _c("div", {
@@ -64118,7 +64133,7 @@ var render = function() {
       }),
       _vm._v(" "),
       _c("div", { staticClass: "ui large modal" }, [
-        _vm._m(4),
+        _vm._m(3),
         _vm._v(" "),
         _c("div", { staticClass: "content" }, [
           _c("div", { staticClass: "ui left corner labeled input fluid" }, [
@@ -64144,7 +64159,7 @@ var render = function() {
               }
             }),
             _vm._v(" "),
-            _vm._m(5)
+            _vm._m(4)
           ])
         ]),
         _vm._v(" "),
@@ -64175,25 +64190,6 @@ var render = function() {
   )
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass:
-          "ui labeled icon button red right  seg-attached-left c-submenu",
-        attrs: { "aria-label": "label" }
-      },
-      [
-        _c("i", { staticClass: "like icon" }),
-        _vm._v(
-          "\n                                              30\n                                          "
-        )
-      ]
-    )
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

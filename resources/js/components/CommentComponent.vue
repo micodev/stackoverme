@@ -41,7 +41,7 @@
                                             <button class="ui labeled icon button red right  seg-attached-left c-submenu"
                                                 aria-label="label">
                                                 <i class="like icon"></i>
-                                                30
+                                                {{ comment.like }}
                                             </button>
                                             <button class="ui  icon button comment-button blue right c-submenu"
                                              @click="onCommandButtonClicked(comment)"> <!--//  commentId="{{ $comment->id}}" -->
