@@ -30,7 +30,9 @@ class CreatedIssueController extends Controller
         $post = Post::find($id);
         if($post!=null)
         {
-            return view("problem")->with(['post'=> $post,'imgs'=>$post->Images()->get(),'id'=>$id,'comments'=>$post->Comments()]);
+            $is_owner = false;
+            if($post->User->id ==auth()->user()->id) $is_owner =true;
+            return view("problem")->with(['post'=> $post,'imgs'=>$post->Images()->get(),'id'=>$id,'comments'=>$post->Comments(),"is_owner"=>$is_owner]);
         }
         else {
             return $id;

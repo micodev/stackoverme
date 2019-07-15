@@ -63,34 +63,36 @@
             </div>
 
         </div>
-        <div class="ui row">
-            <form action="/problem/{{ $id }}" method="post">
-                {{ csrf_field() }}
+        @if(!$is_owner)
+            <div class="ui row">
+                <form action="/problem/{{ $id }}" method="post">
+                    {{ csrf_field() }}
 
-            <div class="ui nine wide column">
-                <div class="ui fluid segment">
-                    <textarea id="editor" placeholder="Balabala" autofocus></textarea>
-                    <input type="hidden" name="body_problem" value="" id="body_problem" />
-                    <div class="ui divider horizontal" style="margin: 0.5rem 0 !important;"></div>
-                    <button class="ui icon blue tiny button w-a post_comment" aria-label="label">
-                        <i class="send icon"></i> Send
-                    </button>
-                    <label for="embedpollfileinput" class="ui tiny red  button">
-                        <i class="ui upload icon"></i>
-                        Upload image
-                    </label>
-                    <input type="file" class="inputfile" id="embedpollfileinput"
-                        accept="image/x-png,image/gif,image/jpeg" multiple>
+                <div class="ui nine wide column">
+                    <div class="ui fluid segment">
+                        <textarea id="editor" placeholder="Balabala" autofocus></textarea>
+                        <input type="hidden" name="body_problem" value="" id="body_problem" />
+                        <div class="ui divider horizontal" style="margin: 0.5rem 0 !important;"></div>
+                        <button class="ui icon blue tiny button w-a post_comment" aria-label="label">
+                            <i class="send icon"></i> Send
+                        </button>
+                        <label for="embedpollfileinput" class="ui tiny red  button">
+                            <i class="ui upload icon"></i>
+                            Upload image
+                        </label>
+                        <input type="file" class="inputfile" id="embedpollfileinput"
+                            accept="image/x-png,image/gif,image/jpeg" multiple>
 
-                    <div class="ui horizontal right floated list upimages">
+                        <div class="ui horizontal right floated list upimages">
+                        </div>
+                        <input type="hidden" name="images" class="images_input" value="">
+
                     </div>
-                    <input type="hidden" name="images" class="images_input" value="">
 
                 </div>
-
+            </form>
             </div>
-        </form>
-        </div>
+        @endif
         <div class="ui row">
             <div class="ui nine wide column">
 

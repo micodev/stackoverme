@@ -208,15 +208,17 @@
             });
             $('.ui.dropdown').dropdown();
             $(function () {
-            if(!$("#editor").is(null)) {
-            Simditor.locale = 'en-US';
-            toolbar = ['bold','strikethrough', 'fontScale', 'color', 'ol', 'code', 'link' , 'alignment'];
-            var editor = new Simditor({
-                textarea: $('#editor'),
-                toolbar: toolbar,
-                //optional options
-            });
-        }
+
+            if ($("#editor").length)
+            {
+                Simditor.locale = 'en-US';
+                toolbar = ['bold','strikethrough', 'fontScale', 'color', 'ol', 'code', 'link' , 'alignment'];
+                var editor = new Simditor({
+                    textarea: $('#editor'),
+                    toolbar: toolbar,
+                    //optional options
+                });
+            }
 
 
 
