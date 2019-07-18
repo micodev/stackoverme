@@ -34,4 +34,20 @@ class CommentsApiController extends Controller
         $subcomment->User;
         return json_encode(array($request["commentId"],$subcomment));
     }
+    public function isCorrectLike(Request $request,$id)
+    {
+
+        $comment = Comment::where(["post_id"=>$id,'is_correct'=>true])->first();
+        if($comment!=null){
+            $comment->is_correct=0;
+            $comment->save();
+        }
+
+        $comment = Comment::find(["id"=>$request["commentId"]])->first();
+        if($comment!=null){
+            $comment->is_correct=true;
+            $comment->save();
+        }
+        return json_encode("true");
+    }
 }

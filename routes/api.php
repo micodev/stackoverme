@@ -19,3 +19,4 @@ Route::middleware('auth:web')->get('/user', function (Request $request) {
 
 Route::middleware('auth:web')->get('comments/{id}',"CommentsApiController@index");
 Route::middleware('auth:web')->post('comments/{id}/subcomment',"CommentsApiController@CreateSubcomment");
+Route::middleware('auth:web')->post('comments/{id}/validate',"CommentsApiController@isCorrectLike");

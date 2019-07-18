@@ -1,6 +1,6 @@
 <template>
   <div class="ui fluid piled raised segments">
-        <div v-for="comment in comments" v-bind="comment" :key="comment.id" class="ui segment blue">
+        <div v-for="comment in scomments" v-bind="comment" :key="comment.id" class="ui segment blue">
                             <!-- commentId="{{ $comment->id}}"-->
                             <!-- class="ui grey ribbon label" -->
                             <a
@@ -30,7 +30,7 @@
                             </h2>
 
                             <div class="ui tall stacked segment comment_body">
-                                    <div class="activatior" v-html="comment.description">
+                                    <div class="activatior" @click="onclickPopup" v-html="comment.description">
                                     {{  comment.description }}
                                       <!--{!! $comment->description !!}-->
                                     </div>
@@ -155,18 +155,37 @@ export default {
                 commendId:0,
             }
         },
-        methods:{
+        computed:{
+        scomments : function () {
 
+                        return this.comments.slice().sort(function(a, b) {
+                            return b.is_correct - a.is_correct;
+                        })
+                    }
+
+        },
+        methods:{
+            even: function(arr) {
+
+                return arr.slice().sort(function(a, b) {
+                    return b.is_correct - a.is_correct;
+                });
+            },
             read() {
 
                 window.axios.get('/api/comments/'+this.post_id).then(({ data }) => {
                     data.forEach(dat => {
                         this.comments.push(dat);
-                        console.log(this.comments);
+
+
+                        //console.log(this.comments);
                         //this.comments.forEach()
                     });
-
+                      //this.comments = this.scomments(this.comments);
+                    //  console.log();
+                    //console.log("this : "+ this.sortedArray);
                 });
+
 
             },
             img_attribue(str){
@@ -200,14 +219,25 @@ export default {
 
                 });
             },
-            isCorrectFun(commenta){
+            onclickPopup(){
+                console.log("computer");
 
-                  var comment = this.comments.filter(function(comment){
+            },
+            isCorrectFun(commenta){
+                   var post = {
+                            "commentId" : commenta.id,
+                        };
+                    window.axios.post('/api/comments/'+this.post_id+'/validate', post).then(({ data }) => {
+
+                    var comment = this.comments.filter(function(comment){
                             return comment.is_correct ==1;
                         });
-                        console.log(comment);
-                    comment[0].is_correct=0;
+
+                    if(comment.length!=0)
+                        comment[0].is_correct=0;
                     commenta.is_correct=1;
+
+                    });
             }
 
         },

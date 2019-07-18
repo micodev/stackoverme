@@ -2016,17 +2016,31 @@ __webpack_require__.r(__webpack_exports__);
       commendId: 0
     };
   },
+  computed: {
+    scomments: function scomments() {
+      return this.comments.slice().sort(function (a, b) {
+        return b.is_correct - a.is_correct;
+      });
+    }
+  },
   methods: {
+    even: function even(arr) {
+      return arr.slice().sort(function (a, b) {
+        return b.is_correct - a.is_correct;
+      });
+    },
     read: function read() {
       var _this = this;
 
       window.axios.get('/api/comments/' + this.post_id).then(function (_ref) {
         var data = _ref.data;
         data.forEach(function (dat) {
-          _this.comments.push(dat);
+          _this.comments.push(dat); //console.log(this.comments);
+          //this.comments.forEach()
 
-          console.log(_this.comments); //this.comments.forEach()
-        });
+        }); //this.comments = this.scomments(this.comments);
+        //  console.log();
+        //console.log("this : "+ this.sortedArray);
       });
     },
     img_attribue: function img_attribue(str) {
@@ -2061,13 +2075,25 @@ __webpack_require__.r(__webpack_exports__);
         _this2.commendId = 0;
       });
     },
+    onclickPopup: function onclickPopup() {
+      console.log("computer");
+    },
     isCorrectFun: function isCorrectFun(commenta) {
-      var comment = this.comments.filter(function (comment) {
-        return comment.is_correct == 1;
+      var _this3 = this;
+
+      var post = {
+        "commentId": commenta.id
+      };
+      window.axios.post('/api/comments/' + this.post_id + '/validate', post).then(function (_ref3) {
+        var data = _ref3.data;
+
+        var comment = _this3.comments.filter(function (comment) {
+          return comment.is_correct == 1;
+        });
+
+        if (comment.length != 0) comment[0].is_correct = 0;
+        commenta.is_correct = 1;
       });
-      console.log(comment);
-      comment[0].is_correct = 0;
-      commenta.is_correct = 1;
     }
   },
   beforeMount: function beforeMount() {},
@@ -63904,7 +63930,7 @@ var render = function() {
     "div",
     { staticClass: "ui fluid piled raised segments" },
     [
-      _vm._l(_vm.comments, function(comment) {
+      _vm._l(_vm.scomments, function(comment) {
         return _c(
           "div",
           _vm._b(
@@ -63959,7 +63985,8 @@ var render = function() {
                 "div",
                 {
                   staticClass: "activatior",
-                  domProps: { innerHTML: _vm._s(comment.description) }
+                  domProps: { innerHTML: _vm._s(comment.description) },
+                  on: { click: _vm.onclickPopup }
                 },
                 [
                   _vm._v(
