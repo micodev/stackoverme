@@ -59,7 +59,7 @@ $(function(){
     })
     $(".post_issue,.post_comment").click(function(){
 
-        $("#body_problem").val(""+$(".simditor-body").html());
+        $("#body_problem").val($(".simditor-body").html()+"<p><br></p>");
         $('.tags_input').val($(".tags").dropdown("get value")[1]);
         var imges = "";
         $('.upimages').children('.item').each(function () {

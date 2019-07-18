@@ -185,14 +185,14 @@
                     on: 'hover',
                     maxSelections: 0
                 });
-            $('div.activatior')
+            {{-- $('div.activatior')
                 .popup({
                     on: 'click',
                     delay: {
                         show: 50,
                         hide: 50
                     }
-                });
+                }); --}}
             $('.ui.accordion')
                 .accordion();
             $('.ui.grey.circular.label')

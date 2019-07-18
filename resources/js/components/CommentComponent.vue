@@ -29,13 +29,16 @@
                                 </div>
                             </h2>
 
-                            <div class="ui tall stacked segment comment_body">
-                                    <div class="activatior" @click="onclickPopup" v-html="comment.description">
+                            <div class="ui tall stacked segment comment_body" >
+                                    <div v-bind:class="'activatior'" @click="onclickPopup(comment.id)" v-html="comment.description" style="min-height:100px;">
                                     {{  comment.description }}
-                                      <!--{!! $comment->description !!}-->
+
                                     </div>
-                                    <div class=" ui flowing popup bottom left transition hidden">
-                                            <button v-bind:class="[comment.is_correct==1?'grey':'green','ui icon button']" @click="isCorrectFun(comment)"  aria-label="is_correct">
+
+
+                                    <div class="ui fitted divider" style="margin-bottom:19.600px;"></div>
+                                    <div class="ui buttons d-inline" style="margin-top:10px;display:inline !important;">
+                                            <button v-bind:class="[comment.is_correct==1?'grey':'green','ui icon button c-submenu']" @click="isCorrectFun(comment.id)"  :aria-label="comment.id" >
                                                 <i v-bind:class="[comment.is_correct==1?'green':'white','check icon']"></i>
                                             </button>
                                             <button class="ui labeled icon button red right  seg-attached-left c-submenu"
@@ -44,31 +47,25 @@
                                                 {{ comment.like }}
                                             </button>
                                             <button class="ui  icon button comment-button blue right c-submenu"
-                                             @click="onCommandButtonClicked(comment)"> <!--//  commentId="{{ $comment->id}}" -->
+                                             @click="onCommandButtonClicked(comment)"> <!--   commentId="{{ $comment->id}}" -->
                                                 <i class="comment alternate icon"></i>
                                             </button>
                                             <button class="ui icon button blue seg-attached-right c-submenu" aria-label="label">
                                                 <i class="share icon"></i>
                                             </button>
+                                            <div v-if="comment.images.length>0" class="ui relaxed horizontal list" style="display:inline-block;float:right">
+                                                <div v-for="image in comment.images" v-bind="image" :key="image.id" class="item" style="width:50px !important">
+                                                    <a class="ui image medium label" style="padding:0px !important;width:16.512 !important;">
 
+                                                        <img :src="img_attribue(image.image)[0]" :thumb="img_attribue(image.image)[1]" onclick=lightit(this) style="margin: 0;width:100% !important;">
+                                                    </a>
+                                                </div>
+
+                                             </div>
                                     </div>
-                                    <h4 class="ui horizontal divider header">
-                                        <i class="tag icon"></i>
-                                        Attachments
-                                    </h4>
 
-                                    <div class="ui horizontal list">
-                                        <div v-for="image in comment.images" v-bind="image" :key="image.id" class="item" style="width:50px !important">
-                                            <a class="ui image medium label" style="padding-right:0px !important;width:100% !important;">
 
-                                                 <img :src="img_attribue(image.image)[0]" :thumb="img_attribue(image.image)[1]" onclick=lightit(this) style="margin: 0;width:100% !important;">
-                                            </a>
-                                        </div>
-                                        <!-- @foreach ($comment->Images()->get() as $image )
-                                         <div class="item" style="width:50px !important"><a class="ui image medium label" style="padding-right:0px !important;width:100% !important;"><img {{ $image->image }} onclick=lightit(this) style="margin: 0;width:100% !important;"></a></div>
-                                          @endforeach
-                                          -->
-                                    </div>
+
 
 
 
@@ -165,16 +162,12 @@ export default {
 
         },
         methods:{
-            even: function(arr) {
 
-                return arr.slice().sort(function(a, b) {
-                    return b.is_correct - a.is_correct;
-                });
-            },
             read() {
 
                 window.axios.get('/api/comments/'+this.post_id).then(({ data }) => {
                     data.forEach(dat => {
+                        dat.activater=false;
                         this.comments.push(dat);
 
 
@@ -219,23 +212,36 @@ export default {
 
                 });
             },
-            onclickPopup(){
-                console.log("computer");
+
+            onclickPopup(id){
+                var commenta =this.comments.filter(function(comment){ return comment.id ==id; });
+                var commentb =this.comments.filter(function(comment){ return comment.activater == true; });
+
+                 if(commentb.length > 0 )
+                     commentb[0].activater=false;
+                 if(commenta.length> 0 )
+                     commenta[0].activater=true;
 
             },
-            isCorrectFun(commenta){
+            isCorrectFun(id){
+
+                   var commenta =this.comments.filter(function(comment){ return comment.id ==id; });
+
                    var post = {
-                            "commentId" : commenta.id,
+                            "commentId" : commenta[0].id,
                         };
                     window.axios.post('/api/comments/'+this.post_id+'/validate', post).then(({ data }) => {
-
                     var comment = this.comments.filter(function(comment){
                             return comment.is_correct ==1;
                         });
 
-                    if(comment.length!=0)
+
+                    if(commenta.length > 0 && commenta[0].is_correct==0)
+                    commenta[0].is_correct=1;
+                    else if(comment.length > 0 && comment[0].is_correct==1)
+                    comment[0].is_correct=0;
+                    if(comment.length>0)
                         comment[0].is_correct=0;
-                    commenta.is_correct=1;
 
                     });
             }

@@ -2004,9 +2004,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['post_id'],
   data: function data() {
@@ -2024,17 +2021,14 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
-    even: function even(arr) {
-      return arr.slice().sort(function (a, b) {
-        return b.is_correct - a.is_correct;
-      });
-    },
     read: function read() {
       var _this = this;
 
       window.axios.get('/api/comments/' + this.post_id).then(function (_ref) {
         var data = _ref.data;
         data.forEach(function (dat) {
+          dat.activater = false;
+
           _this.comments.push(dat); //console.log(this.comments);
           //this.comments.forEach()
 
@@ -2075,14 +2069,24 @@ __webpack_require__.r(__webpack_exports__);
         _this2.commendId = 0;
       });
     },
-    onclickPopup: function onclickPopup() {
-      console.log("computer");
+    onclickPopup: function onclickPopup(id) {
+      var commenta = this.comments.filter(function (comment) {
+        return comment.id == id;
+      });
+      var commentb = this.comments.filter(function (comment) {
+        return comment.activater == true;
+      });
+      if (commentb.length > 0) commentb[0].activater = false;
+      if (commenta.length > 0) commenta[0].activater = true;
     },
-    isCorrectFun: function isCorrectFun(commenta) {
+    isCorrectFun: function isCorrectFun(id) {
       var _this3 = this;
 
+      var commenta = this.comments.filter(function (comment) {
+        return comment.id == id;
+      });
       var post = {
-        "commentId": commenta.id
+        "commentId": commenta[0].id
       };
       window.axios.post('/api/comments/' + this.post_id + '/validate', post).then(function (_ref3) {
         var data = _ref3.data;
@@ -2091,8 +2095,8 @@ __webpack_require__.r(__webpack_exports__);
           return comment.is_correct == 1;
         });
 
-        if (comment.length != 0) comment[0].is_correct = 0;
-        commenta.is_correct = 1;
+        if (commenta.length > 0 && commenta[0].is_correct == 0) commenta[0].is_correct = 1;else if (comment.length > 0 && comment[0].is_correct == 1) comment[0].is_correct = 0;
+        if (comment.length > 0) comment[0].is_correct = 0;
       });
     }
   },
@@ -63984,23 +63988,37 @@ var render = function() {
               _c(
                 "div",
                 {
-                  staticClass: "activatior",
+                  class: "activatior",
+                  staticStyle: { "min-height": "100px" },
                   domProps: { innerHTML: _vm._s(comment.description) },
-                  on: { click: _vm.onclickPopup }
+                  on: {
+                    click: function($event) {
+                      return _vm.onclickPopup(comment.id)
+                    }
+                  }
                 },
                 [
                   _vm._v(
                     "\n                                  " +
                       _vm._s(comment.description) +
-                      "\n                                    "
+                      "\n\n                                  "
                   )
                 ]
               ),
               _vm._v(" "),
+              _c("div", {
+                staticClass: "ui fitted divider",
+                staticStyle: { "margin-bottom": "19.600px" }
+              }),
+              _vm._v(" "),
               _c(
                 "div",
                 {
-                  staticClass: " ui flowing popup bottom left transition hidden"
+                  staticClass: "ui buttons d-inline",
+                  staticStyle: {
+                    "margin-top": "10px",
+                    display: "inline !important"
+                  }
                 },
                 [
                   _c(
@@ -64008,12 +64026,12 @@ var render = function() {
                     {
                       class: [
                         comment.is_correct == 1 ? "grey" : "green",
-                        "ui icon button"
+                        "ui icon button c-submenu"
                       ],
-                      attrs: { "aria-label": "is_correct" },
+                      attrs: { "aria-label": comment.id },
                       on: {
                         click: function($event) {
-                          return _vm.isCorrectFun(comment)
+                          return _vm.isCorrectFun(comment.id)
                         }
                       }
                     },
@@ -64058,56 +64076,62 @@ var render = function() {
                     [_c("i", { staticClass: "comment alternate icon" })]
                   ),
                   _vm._v(" "),
-                  _vm._m(0, true)
-                ]
-              ),
-              _vm._v(" "),
-              _vm._m(1, true),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "ui horizontal list" },
-                _vm._l(comment.images, function(image) {
-                  return _c(
-                    "div",
-                    _vm._b(
-                      {
-                        key: image.id,
-                        staticClass: "item",
-                        staticStyle: { width: "50px !important" }
-                      },
-                      "div",
-                      image,
-                      false
-                    ),
-                    [
-                      _c(
-                        "a",
+                  _vm._m(0, true),
+                  _vm._v(" "),
+                  comment.images.length > 0
+                    ? _c(
+                        "div",
                         {
-                          staticClass: "ui image medium label",
+                          staticClass: "ui relaxed horizontal list",
                           staticStyle: {
-                            "padding-right": "0px !important",
-                            width: "100% !important"
+                            display: "inline-block",
+                            float: "right"
                           }
                         },
-                        [
-                          _c("img", {
-                            staticStyle: {
-                              margin: "0",
-                              width: "100% !important"
-                            },
-                            attrs: {
-                              src: _vm.img_attribue(image.image)[0],
-                              thumb: _vm.img_attribue(image.image)[1],
-                              onclick: "lightit(this)"
-                            }
-                          })
-                        ]
+                        _vm._l(comment.images, function(image) {
+                          return _c(
+                            "div",
+                            _vm._b(
+                              {
+                                key: image.id,
+                                staticClass: "item",
+                                staticStyle: { width: "50px !important" }
+                              },
+                              "div",
+                              image,
+                              false
+                            ),
+                            [
+                              _c(
+                                "a",
+                                {
+                                  staticClass: "ui image medium label",
+                                  staticStyle: {
+                                    padding: "0px !important",
+                                    width: "16.512 !important"
+                                  }
+                                },
+                                [
+                                  _c("img", {
+                                    staticStyle: {
+                                      margin: "0",
+                                      width: "100% !important"
+                                    },
+                                    attrs: {
+                                      src: _vm.img_attribue(image.image)[0],
+                                      thumb: _vm.img_attribue(image.image)[1],
+                                      onclick: "lightit(this)"
+                                    }
+                                  })
+                                ]
+                              )
+                            ]
+                          )
+                        }),
+                        0
                       )
-                    ]
-                  )
-                }),
-                0
+                    : _vm._e()
+                ]
               )
             ]),
             _vm._v(" "),
@@ -64143,7 +64167,7 @@ var render = function() {
                         )
                       ]),
                       _vm._v(" "),
-                      _vm._m(2, true)
+                      _vm._m(1, true)
                     ]),
                     _vm._v(" "),
                     _c("div", {
@@ -64160,7 +64184,7 @@ var render = function() {
       }),
       _vm._v(" "),
       _c("div", { staticClass: "ui large modal" }, [
-        _vm._m(3),
+        _vm._m(2),
         _vm._v(" "),
         _c("div", { staticClass: "content" }, [
           _c("div", { staticClass: "ui left corner labeled input fluid" }, [
@@ -64186,7 +64210,7 @@ var render = function() {
               }
             }),
             _vm._v(" "),
-            _vm._m(4)
+            _vm._m(3)
           ])
         ]),
         _vm._v(" "),
@@ -64229,17 +64253,6 @@ var staticRenderFns = [
       },
       [_c("i", { staticClass: "share icon" })]
     )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("h4", { staticClass: "ui horizontal divider header" }, [
-      _c("i", { staticClass: "tag icon" }),
-      _vm._v(
-        "\n                                      Attachments\n                                  "
-      )
-    ])
   },
   function() {
     var _vm = this

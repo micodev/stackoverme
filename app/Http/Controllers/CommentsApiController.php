@@ -43,10 +43,10 @@ class CommentsApiController extends Controller
             $comment->save();
         }
 
-        $comment = Comment::find(["id"=>$request["commentId"]])->first();
-        if($comment!=null){
-            $comment->is_correct=true;
-            $comment->save();
+        $commenta = Comment::find(["id"=>$request["commentId"]])->first();
+        if( $comment == null || ($commenta !=null && $comment->id != $commenta->id)){
+            $commenta->is_correct=true;
+            $commenta->save();
         }
         return json_encode("true");
     }
