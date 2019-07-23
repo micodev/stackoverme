@@ -37,6 +37,9 @@ class Post extends Model
     {
         return $this->belongsToMany('App\Tag');
     }
-
+    public function plike()
+    {
+        return $this->hasMany('App\Userplike');
+    }
 
 }

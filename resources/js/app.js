@@ -3,10 +3,13 @@ require('./bootstrap');
 window.Vue = require('vue');
 import VueAxios from 'vue-axios';
 import axios from 'axios';
+import Clipboard from 'v-clipboard'
+
 axios.defaults.headers.common = {
     'X-Requested-With': 'XMLHttpRequest',
     'X-CSRF-TOKEN': window.csrf_token
   };
+Vue.use(Clipboard);
 Vue.use(VueAxios, axios);
 window.chartjs = require('chart.js');
 window.devicon = require('devicon');

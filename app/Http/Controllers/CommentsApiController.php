@@ -7,6 +7,8 @@ use App\Post;
 use App\Comment;
 use App\Cimage;
 use App\Subcomment;
+use Illuminate\Support\Facades\Auth;
+use App\Userclike;
 
 class CommentsApiController extends Controller
 {
@@ -16,6 +18,7 @@ class CommentsApiController extends Controller
         $comments = $post->Comments;
         foreach ($comments as $value) {
            $value->User;
+           $value->Clikes;
            $value->Images;
            $sub = $value->SubComments;
            foreach($sub as $su)
@@ -49,5 +52,24 @@ class CommentsApiController extends Controller
             $commenta->save();
         }
         return json_encode("true");
+    }
+    public function Commentlike(Request $request,$id){
+        $cid = $request["commentId"];
+        $user = Auth::user();
+        $cuser = $user->Clikes();
+        $hasLike =$cuser->where(["comment_id"=>$cid])->first();
+        if($hasLike==null)
+        {
+            $clike =new Userclike;
+            $clike->comment_id = $cid;
+            $clike->user_id = $user->id;
+            $clike->save();
+            return json_encode(["like",$clike]);
+        }
+        else {
+            $hasLike->delete();
+            return json_encode(["unlike"]);
+        }
+        return json_encode(["false"]);
     }
 }

@@ -54,4 +54,12 @@ class User extends Authenticatable
    {
        return $this->hasMany('App\Subcomment');
    }
+   public function Clikes()
+   {
+       return $this->hasMany('App\Userclike');
+   }
+//    public function Plikes()
+//    {
+//        return $this->hasMany('App\Userplike');
+//    }
 }

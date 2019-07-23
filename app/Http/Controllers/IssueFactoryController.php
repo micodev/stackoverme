@@ -27,7 +27,6 @@ class IssueFactoryController extends Controller
     }
     public function serlize_tag($tags)
     {
-        
         $_tags =array_filter(explode(',', $tags));
         return $_tags;
     }

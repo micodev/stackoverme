@@ -47,15 +47,10 @@
                         </div>
                     </h2>
                     <div class=" ui tiny buttons right floated">
-                        <button class="green ui labeled icon button right" aria-label="label">
-                            <i class="like icon"></i>
-                            {{ $post->like }}
-                        </button>
                         <button class="ui blue labeled icon button right" id="copyButton" copy="{{ url()->full() }}" >
                             <i class="share icon"></i>
                             share
                         </button>
-
                     </div>
                 </div>
 
@@ -97,7 +92,7 @@
             <div class="ui nine wide column">
 
                     <div id="app">
-                            <comment-component :post_id="'{!! $id !!}'" ></comment-component>
+                            <comment-component :post_id="'{!! $id !!}'" :user_id="'{!! auth()->user()->id !!}'" ></comment-component>
                     </div>
 
                     {{--

@@ -185,7 +185,7 @@ body {
 }
 
 .problem_body > pre,
-.comment_body > pre {
+.comment_body > * > pre {
   padding: 10px 5px 10px 10px !important;
   margin: 15px 0 !important;
   display: block !important;

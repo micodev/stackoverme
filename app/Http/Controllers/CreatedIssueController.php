@@ -63,4 +63,5 @@ class CreatedIssueController extends Controller
         auth()->user()->Subcomments()->save($subcomment);
         return "success";
     }
+
 }

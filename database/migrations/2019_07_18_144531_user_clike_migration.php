@@ -12,8 +12,12 @@ class UserClikeMigration extends Migration
      * @return void
      */
     public function up()
-    {
-        //
+    {   //user comment likes
+        Schema::create('userclikes', function (Blueprint $table) {
+            $table->bigIncrements('id')->unique();
+            $table->integer('user_id')->unsigned()->nullable();
+            $table->integer('comment_id')->unsigned()->nullable();
+        });
     }
 
     /**
@@ -23,6 +27,6 @@ class UserClikeMigration extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('userclikes');
     }
 }

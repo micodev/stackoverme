@@ -13,7 +13,11 @@ class UserPlikeMigration extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('userplikes', function (Blueprint $table) {
+            $table->bigIncrements('id')->unique();
+            $table->integer('user_id')->unsigned()->nullable();
+            $table->integer('post_id')->unsigned()->nullable();
+        });
     }
 
     /**
@@ -23,6 +27,6 @@ class UserPlikeMigration extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('userplikes');
     }
 }

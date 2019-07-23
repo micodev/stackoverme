@@ -224,7 +224,7 @@
 
         })
 
-
+        if(document.location.hash ==null)
         $(window).scrollTop(0);
         });
 
