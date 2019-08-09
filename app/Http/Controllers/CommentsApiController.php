@@ -26,6 +26,14 @@ class CommentsApiController extends Controller
         }
         return json_encode($comments);
     }
+    public function CommentDelete(Request $request,$id)
+    {
+        $post = Post::find($id);
+        $comment = $post->Comments->find(["id"=>$request["commentId"]]);
+        $comment->first()->delete();
+        return json_encode("true");
+
+    }
     public function CreateSubcomment(Request $request,$id)
     {
         $comment = Comment::find($request["commentId"]);

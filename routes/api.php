@@ -21,3 +21,4 @@ Route::middleware('auth:web')->get('comments/{id}',"CommentsApiController@index"
 Route::middleware('auth:web')->post('comments/{id}/subcomment',"CommentsApiController@CreateSubcomment");
 Route::middleware('auth:web')->post('comments/{id}/validate',"CommentsApiController@isCorrectLike");
 Route::middleware('auth:web')->post('comments/{id}/cLike',"CommentsApiController@Commentlike");
+Route::middleware('auth:web')->post('comments/{id}/delete',"CommentsApiController@CommentDelete");

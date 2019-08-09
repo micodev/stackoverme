@@ -1,6 +1,6 @@
 <template>
   <div class="ui fluid piled raised segments">
-    <div v-for="comment in scomments" v-bind="comment" :key="comment.id" class="ui segment blue">
+    <div v-for="comment in scomments"  :key="comment.id" class="ui segment blue">
       <!-- commentId="{{ $comment->id}}"-->
       <!-- class="ui grey ribbon label" -->
       <a
@@ -16,8 +16,8 @@
             <i class="ellipsis vertical icon"></i>
             <div class="menu">
                 <div class="header">Choose option</div>
-                <div class="item">Edit</div>
-                <div class="item">Delete</div>
+                <div class="item"  @click="ShowEditComment(comment.id)">Edit</div>
+                <div class="item" @click="deleteComment(comment.id)">Delete</div>
             </div>
         </div>
       </div>
@@ -63,7 +63,7 @@
           </button>
           <button
             class="ui icon button comment-button blue right c-submenu"
-            @click="onCommandButtonClicked(comment)"
+            @click="onCommandButtonClicked(comment.id)"
           >
             <!--   commentId="{{ $comment->id}}" -->
             <i class="comment alternate icon"></i>
@@ -144,7 +144,7 @@
     </div>
 
     <!-- comment modal -->
-    <div class="ui large modal">
+    <div class="ui large modal comment">
       <div class="header">
         <span class="ui medium red text">A</span>dd a comment
       </div>
@@ -169,6 +169,56 @@
         </div>
       </div>
     </div>
+    <!-- comment modal -->
+    <div class="ui large modal editComment">
+      <div class="header">
+        <span class="ui medium red text">E</span>dit comment
+      </div>
+      <div class="content">
+        <textarea id="editComment"></textarea>
+      </div>
+      <div class="actions">
+         <div
+            v-if="editComment!=null && editComment.images.length>0"
+            class="ui horizontal left floated list upeditimages"
+            
+          >
+            <div
+              v-for="image in editComment.images"
+              v-bind="image"
+              :key="image.id"
+              class="item"
+              style="width:50px !important"
+            >
+              <a
+                class="ui image medium label"
+                style="padding:0px !important;width:16.512 !important;"
+              >
+                <img
+                  :src="img_attribue(image.image)[0]"
+                  :thumb="img_attribue(image.image)[1]"
+                  onclick="lightit(this)"
+                  style="margin: 0;width:100% !important;"
+                />
+              </a>
+            </div>
+          </div>
+        <label for="embedpollfileinput1" class="ui tiny red  button">
+                            <i class="ui upload icon"></i>
+                            Upload image
+                        </label>
+                        <input type="file" class="inputfile EditCommentFile" id="embedpollfileinput1"
+                            accept="image/x-png,image/gif,image/jpeg" multiple>
+                        <input type="hidden" name="images" class="images_input" value="">
+        <div class="ui negative button">cancel</div>
+        <div class="ui positive right labeled icon button" @click="EditComment()">
+          send
+          <i class="checkmark icon"></i>
+        </div>
+       
+      </div>
+    </div>
+    
   </div>
 </template>
 
@@ -178,6 +228,7 @@ export default {
   props: ["post_id", "user_id"],
   data() {
     return {
+      editComment:null,
       subComment: null,
       comments: [],
       commendId: 0
@@ -191,9 +242,57 @@ export default {
     }
   },
   methods: {
+    
     copy : function(id){
 
             this.$clipboard( window.location.origin + window.location.pathname + "#" + id);
+    },
+    EditComment : function(){
+
+      
+    },
+    deleteComment(id){
+      
+      var post = {
+        commentId: id
+      };
+      window.axios
+        .post("/api/comments/" + this.post_id + "/delete", post)
+        .then(({ data }) => {
+          var comment = this.comments.filter(function(comment){return comment.id ==id});
+          
+          this.comments.splice(this.comments.indexOf(comment[0]),1);
+          
+        });
+
+    },
+    EditComment: function(){
+
+    },
+    ShowEditComment: function(id){
+      var editor = null;
+      if ($("#editComment").length)
+            {
+                Simditor.locale = 'en-US';
+                toolbar = ['bold','strikethrough', 'fontScale', 'color', 'ol', 'code', 'link' , 'alignment'];
+                editor = new Simditor({
+                    textarea: $('#editComment'),
+                    toolbar: toolbar,
+                    //optional options
+                });
+            }
+     
+      this.commendId = id;
+      var comment = this.comments.filter(function(comment){return comment.id ==id});
+      this.editComment = comment[0];
+      $(".content > .simditor .simditor-body").prepend(comment[0].description);
+      $(".ui.modal.editComment")
+        .modal({
+          centered: true,
+          blurring: true,
+          transition: "zoom"
+        })
+        .modal("show");
     },
     likes:function(id){
         var comment = this.comments.filter(function(comment){return comment.id ==id});
@@ -261,9 +360,11 @@ export default {
 
       return strr_array;
     },
-    onCommandButtonClicked(comment) {
+    onCommandButtonClicked(id) {
+      var comment = this.comments.filter(function(comment){return comment.id ==id});
+      comment = comment.length>0 ? comment[0]  : null;
       this.commendId = comment.id;
-      $(".ui.modal")
+      $(".ui.modal.comment")
         .modal({
           centered: true,
           blurring: true,

@@ -75,7 +75,7 @@
                             <i class="ui upload icon"></i>
                             Upload image
                         </label>
-                        <input type="file" class="inputfile" id="embedpollfileinput"
+                        <input type="file" class="inputfile commentFile" id="embedpollfileinput"
                             accept="image/x-png,image/gif,image/jpeg" multiple>
 
                         <div class="ui horizontal right floated list upimages">
