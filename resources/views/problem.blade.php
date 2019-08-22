@@ -8,10 +8,12 @@
             <div class="ui nine wide column">
 
                 <div class="ui top attached red segment" tabindex="0" style="text-align:left;">
-                    <h2 class="ui fluid header problem_title">
+                    <h2 class="ui fluid header problem_title d-inline" style="margin-bottom:0px">
                         {{ $post->title }}
                     </h2>
-
+                    <div class="ui right floated mini circular blue  icon button editPost" style="margin-bottom:0px">
+                        <i class="edit outline icon"></i>
+                    </div>
                 </div>
                 <div class="ui attached segment">
                     <div class="ui padded attached segment problem_body">
@@ -224,9 +226,30 @@
     </div>
 
 </div>
+<div class="ui modal editModal">
 
+    <div class="header">
+      Edit Post
+    </div>
+    <div class="image content">
+      
+      <div class="description">
+        <textarea id="editPost"></textarea>
+      </div>
+    </div>
+    <div class="actions">
+      <div class="ui black deny button">
+        Nope
+      </div>
+      <div class="ui positive right labeled icon button">
+        Yep, that's me
+        <i class="checkmark icon"></i>
+      </div>
+    </div>
+  </div>
 @endsection
 @section('subcomment_post')
+  
     var commentid = 0;
     $('.comment-button').on('click', function () {
         commentid = $(this).attr("commentId");

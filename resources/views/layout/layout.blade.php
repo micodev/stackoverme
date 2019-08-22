@@ -219,11 +219,22 @@
                     //optional options
                 });
             }
+            if ($("#editPost").length)
+            {
+                Simditor.locale = 'en-US';
+                toolbar = ['bold','strikethrough', 'fontScale', 'color', 'ol', 'code', 'link' , 'alignment'];
+                var editor = new Simditor({
+                    textarea: $('#editPost'),
+                    toolbar: toolbar,
+                    //optional options
+                });
+            }
             
 
 
         })
-
+        $(".editModal").modal();
+        $(".editPost").on('click', function () {  $(".editModal").modal("show"); });
         if(document.location.hash ==null)
         $(window).scrollTop(0);
         });

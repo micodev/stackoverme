@@ -1,6 +1,6 @@
 <template>
   <div class="ui fluid piled raised segments">
-    <div v-for="comment in scomments"  :key="comment.id" class="ui segment blue">
+    <div v-for="comment in scomments" :key="comment.id"  v-bind="comment" class="ui segment blue">
       <!-- commentId="{{ $comment->id}}"-->
       <!-- class="ui grey ribbon label" -->
       <a
@@ -11,14 +11,18 @@
         <i v-bind:class="[comment.is_correct ? 'check icon' : 'info icon']"></i>
       </a>
 
-      <div v-if="comment.user_id==user_id" class="ui top right attached label" style="background-color: transparent !important;">
+      <div
+        v-if="comment.user_id==user_id"
+        class="ui top right attached label"
+        style="background-color: transparent !important;"
+      >
         <div class="ui tiny top left pointing dropdown button" style="background-color:transparent">
-            <i class="ellipsis vertical icon"></i>
-            <div class="menu">
-                <div class="header">Choose option</div>
-                <div class="item"  @click="ShowEditComment(comment.id)">Edit</div>
-                <div class="item" @click="deleteComment(comment.id)">Delete</div>
-            </div>
+          <i class="ellipsis vertical icon"></i>
+          <div class="menu">
+            <div class="header">Choose option</div>
+            <div class="item" @click="ShowEditComment(comment.id)">Edit</div>
+            <div class="item" @click="deleteComment(comment.id)">Delete</div>
+          </div>
         </div>
       </div>
       <div class="ui divider horizontal clearing"></div>
@@ -68,7 +72,11 @@
             <!--   commentId="{{ $comment->id}}" -->
             <i class="comment alternate icon"></i>
           </button>
-          <button class="ui icon button blue seg-attached-right c-submenu" @click="copy(comment.id)" aria-label="label" >
+          <button
+            class="ui icon button blue seg-attached-right c-submenu"
+            @click="copy(comment.id)"
+            aria-label="label"
+          >
             <i class="share icon"></i>
           </button>
           <div
@@ -178,11 +186,8 @@
         <textarea id="editComment"></textarea>
       </div>
       <div class="actions">
-         <div
-            v-if="editComment!=null && editComment.images.length>0"
-            class="ui horizontal left floated list upeditimages"
-            
-          >
+        <div class="ui horizontal left floated list upeditimages">
+          <div v-if="editComment!=null && editComment.images.length>0">
             <div
               v-for="image in editComment.images"
               v-bind="image"
@@ -203,22 +208,26 @@
               </a>
             </div>
           </div>
-        <label for="embedpollfileinput1" class="ui tiny red  button">
-                            <i class="ui upload icon"></i>
-                            Upload image
-                        </label>
-                        <input type="file" class="inputfile EditCommentFile" id="embedpollfileinput1"
-                            accept="image/x-png,image/gif,image/jpeg" multiple>
-                        <input type="hidden" name="images" class="images_input" value="">
+        </div>
+        <label for="embedpollfileinput1" class="ui tiny red button">
+          <i class="ui upload icon"></i>
+          Upload image
+        </label>
+        <input
+          type="file"
+          class="inputfile EditCommentFile"
+          id="embedpollfileinput1"
+          accept="image/x-png, image/gif, image/jpeg"
+          multiple
+        />
+        <input type="hidden" name="images" class="images_input" value />
         <div class="ui negative button">cancel</div>
         <div class="ui positive right labeled icon button" @click="EditComment()">
           send
           <i class="checkmark icon"></i>
         </div>
-       
       </div>
     </div>
-    
   </div>
 </template>
 
@@ -228,7 +237,8 @@ export default {
   props: ["post_id", "user_id"],
   data() {
     return {
-      editComment:null,
+      editCommentBody:null,
+      editComment: null,
       subComment: null,
       comments: [],
       commendId: 0
@@ -242,48 +252,77 @@ export default {
     }
   },
   methods: {
-    
-    copy : function(id){
-
-            this.$clipboard( window.location.origin + window.location.pathname + "#" + id);
+    copy: function(id) {
+      this.$clipboard(
+        window.location.origin + window.location.pathname + "#" + id
+      );
     },
-    EditComment : function(){
-
-      
+    EditComment: function() {
+       var body =$(".content > .simditor .simditor-body").html();
+       var imges = "";
+        $('.upeditimages').children('.item').each(function () {
+             imges=imges + "src=" + $(this).find( "img" ).attr("src") +" thumb=" + $(this).find( "img" ).attr("thumb")+ ","; // "this" is the current element in the loop
+        });
+        var post = {
+        commentId: this.commendId,
+        body : body,
+        images : imges
+      };
+      window.axios
+        .post("/api/comments/" + this.post_id + "/editComment", post)
+        .then(({ data }) => {
+           var comment = this.scomments.filter(function(comment) {
+               return comment.id == data.id;
+           });
+          
+          comment[0].description = data.description;
+          comment[0].images.splice(0,comment[0].images.length);
+          data.images.forEach(function(image){
+            comment[0].images.push(image);
+          });
+          //comment[0].images = data.images;
+         // console.log(comment[0]);
+        });
     },
-    deleteComment(id){
-      
+    deleteComment(id) {
       var post = {
         commentId: id
       };
       window.axios
         .post("/api/comments/" + this.post_id + "/delete", post)
         .then(({ data }) => {
-          var comment = this.comments.filter(function(comment){return comment.id ==id});
-          
-          this.comments.splice(this.comments.indexOf(comment[0]),1);
-          
+          var comment = this.comments.filter(function(comment) {
+            return comment.id == id;
+          });
+
+          this.comments.splice(this.comments.indexOf(comment[0]), 1);
         });
-
     },
-    EditComment: function(){
-
-    },
-    ShowEditComment: function(id){
+    ShowEditComment: function(id) {
       var editor = null;
-      if ($("#editComment").length)
-            {
-                Simditor.locale = 'en-US';
-                toolbar = ['bold','strikethrough', 'fontScale', 'color', 'ol', 'code', 'link' , 'alignment'];
-                editor = new Simditor({
-                    textarea: $('#editComment'),
-                    toolbar: toolbar,
-                    //optional options
-                });
-            }
-     
+      if ($("#editComment").length) {
+        Simditor.locale = "en-US";
+        toolbar = [
+          "bold",
+          "strikethrough",
+          "fontScale",
+          "color",
+          "ol",
+          "code",
+          "link",
+          "alignment"
+        ];
+        editor = new Simditor({
+          textarea: $("#editComment"),
+          toolbar: toolbar
+          //optional options
+        });
+      }
+
       this.commendId = id;
-      var comment = this.comments.filter(function(comment){return comment.id ==id});
+      var comment = this.comments.filter(function(comment) {
+        return comment.id == id;
+      });
       this.editComment = comment[0];
       $(".content > .simditor .simditor-body").prepend(comment[0].description);
       $(".ui.modal.editComment")
@@ -294,10 +333,12 @@ export default {
         })
         .modal("show");
     },
-    likes:function(id){
-        var comment = this.comments.filter(function(comment){return comment.id ==id});
-        var likes = comment[0].clikes.length;
-        return likes;
+    likes: function(id) {
+      var comment = this.comments.filter(function(comment) {
+        return comment.id == id;
+      });
+      var likes = comment[0].clikes.length;
+      return likes;
     },
     islike: function(id) {
       var comment = this.comments.filter(function(comment) {
@@ -315,7 +356,6 @@ export default {
       } else return false;
     },
     commentLike(id) {
-
       var post = {
         commentId: id
       };
@@ -361,8 +401,10 @@ export default {
       return strr_array;
     },
     onCommandButtonClicked(id) {
-      var comment = this.comments.filter(function(comment){return comment.id ==id});
-      comment = comment.length>0 ? comment[0]  : null;
+      var comment = this.comments.filter(function(comment) {
+        return comment.id == id;
+      });
+      comment = comment.length > 0 ? comment[0] : null;
       this.commendId = comment.id;
       $(".ui.modal.comment")
         .modal({

@@ -12,6 +12,18 @@ use App\Userclike;
 
 class CommentsApiController extends Controller
 {
+    public function serlize_img($imgs)
+    {
+        $images = array();
+        $myArray =array_filter(explode(',', $imgs));
+        foreach ($myArray as $value) {
+            $img = new Cimage;
+            $img->image = $value;
+            $images[] = $img;
+        }
+        return $images;
+    }
+
     public function Index(Request $request,$id)
     {
         $post = Post::find($id);
@@ -25,6 +37,18 @@ class CommentsApiController extends Controller
             $su->User;
         }
         return json_encode($comments);
+    }
+    public function CommentEdit(Request $request,$id)
+    {
+        $post = Post::find($id);
+        $comment = $post->Comments->find(["id"=>$request["commentId"]])->first();
+        $comment->images;
+        $comment->Images()->delete();
+        $comment->Images()->saveMany($this->serlize_img($request["images"]));
+        $comment->description = $request->body;
+        $comment->save();
+        return $comment;
+        
     }
     public function CommentDelete(Request $request,$id)
     {
