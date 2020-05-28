@@ -10,15 +10,17 @@
 //     border-left: #000000 solid 1px;
 //     border-right: #000000 solid 1px;
 // }
-.note-editable>*{
+.note-editable>* {
     line-height: 0.5;
 }
-.problem_title{
+
+.problem_title {
     font-family: 'Saira Semi Condensed', sans-serif !important;
 }
-[data-value="pre"]{
-    border-top-right-radius:1px;
-    border-bottom-right-radius:1px;
+
+[data-value="pre"] {
+    border-top-right-radius: 1px;
+    border-bottom-right-radius: 1px;
     margin-left: 0;
     border-bottom-left-radius: 1px;
     border-top-left-radius: 1px;
@@ -48,18 +50,21 @@
     box-sizing: border-box;
     touch-action: manipulation;
 }
-.note-editor.note-frame{
+
+.note-editor.note-frame {
     width: 100%;
 }
-.cke_chrome{
+
+.cke_chrome {
     width: 100% !important;
 }
 
-.main-content{
+.main-content {
     padding: 0 !important;
     margin: 0 !important;
 
 }
+
 // .ui.footer {
 //     z-index: 1000;
 // }
@@ -70,120 +75,150 @@
 //       width: 100%;
 //     }
 //   }
-.amber{
+.amber {
     background: #ffbf00 !important;
 
 }
-.blue-gradiant:hover{
-    background: rgba(26,167,255,1) !important;
+
+.blue-gradiant:hover {
+    background: rgba(26, 167, 255, 1) !important;
 
 }
-.inverted.menu{
+
+.inverted.menu {
     border: 0 !important;
     border-radius: 0 !important;
 }
-html,body{
-   margin:0 !important;
-   padding:0 !important;
+
+html,
+body {
+    margin: 0 !important;
+    padding: 0 !important;
 }
-.blue-gradiant{
-    background: rgba(26,167,255,1);
-background: -moz-linear-gradient(-45deg, rgba(26,167,255,1) 0%, rgba(0,107,184,1) 76%, rgba(0,107,184,1) 100%);
-background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(26,167,255,1)), color-stop(76%, rgba(0,107,184,1)), color-stop(100%, rgba(0,107,184,1)));
-background: -webkit-linear-gradient(-45deg, rgba(26,167,255,1) 0%, rgba(0,107,184,1) 76%, rgba(0,107,184,1) 100%);
-background: -o-linear-gradient(-45deg, rgba(26,167,255,1) 0%, rgba(0,107,184,1) 76%, rgba(0,107,184,1) 100%);
-background: -ms-linear-gradient(-45deg, rgba(26,167,255,1) 0%, rgba(0,107,184,1) 76%, rgba(0,107,184,1) 100%);
-background: linear-gradient(135deg, rgba(26,167,255,1) 0%, rgba(0,107,184,1) 76%, rgba(0,107,184,1) 100%);
+
+.blue-gradiant {
+    background: rgba(26, 167, 255, 1);
+    background: -moz-linear-gradient(-45deg, rgba(26, 167, 255, 1) 0%, rgba(0, 107, 184, 1) 76%, rgba(0, 107, 184, 1) 100%);
+    background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(26, 167, 255, 1)), color-stop(76%, rgba(0, 107, 184, 1)), color-stop(100%, rgba(0, 107, 184, 1)));
+    background: -webkit-linear-gradient(-45deg, rgba(26, 167, 255, 1) 0%, rgba(0, 107, 184, 1) 76%, rgba(0, 107, 184, 1) 100%);
+    background: -o-linear-gradient(-45deg, rgba(26, 167, 255, 1) 0%, rgba(0, 107, 184, 1) 76%, rgba(0, 107, 184, 1) 100%);
+    background: -ms-linear-gradient(-45deg, rgba(26, 167, 255, 1) 0%, rgba(0, 107, 184, 1) 76%, rgba(0, 107, 184, 1) 100%);
+    background: linear-gradient(135deg, rgba(26, 167, 255, 1) 0%, rgba(0, 107, 184, 1) 76%, rgba(0, 107, 184, 1) 100%);
 }
-.right.float{
+
+.right.float {
     float: right;
 }
-.blue-gradiant .button{
+
+.blue-gradiant .button {
     background: transparent;
-  -webkit-box-shadow: 0 0 0 1px rgb(255, 255, 255) inset;
-  box-shadow: 0 0 0 1px #2185D0 inset;
-  color: #ffffff;
-}
-.bio .blue-gradiant .button:hover{
-    background: transparent;
-  -webkit-box-shadow: 0 0 0 1px rgb(255, 255, 255) inset;
-  box-shadow: 0 0 0 1px #2185D0 inset;
-  color: #ffffff;
-}
-.stats.blue-gradiant .button:hover{
-    background:  rgb(18, 73, 116);
+    -webkit-box-shadow: 0 0 0 1px rgb(255, 255, 255) inset;
+    box-shadow: 0 0 0 1px #2185D0 inset;
     color: #ffffff;
 }
-.comment-seg{
-    margin:0 !important;
+
+.bio .blue-gradiant .button:hover {
+    background: transparent;
+    -webkit-box-shadow: 0 0 0 1px rgb(255, 255, 255) inset;
+    box-shadow: 0 0 0 1px #2185D0 inset;
+    color: #ffffff;
 }
-.button-noclck{
+
+.stats.blue-gradiant .button:hover {
+    background: rgb(18, 73, 116);
+    color: #ffffff;
+}
+
+.comment-seg {
+    margin: 0 !important;
+}
+
+.button-noclck {
     cursor: default !important;
 }
 
-.ui.blue.buttons .button,.segment .blue
-{
-  background-color:#2169dd;
+.ui.blue.buttons .button,
+.segment .blue {
+    background-color: #2169dd;
 }
-.ui.left.corner.label:after{
+
+.ui.left.corner.label:after {
     left: -1px !important;
 }
+
 .inputfile {
-	width: 0.1px;
-	height: 0.1px;
-	opacity: 0;
-	overflow: hidden;
-	position: absolute;
-	z-index: -1;
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
 }
-.d-inline{
+
+.d-inline {
     display: inline-block !important;
 }
+
 .navbar-laravel {
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
-.sideclick{
+
+.sideclick {
     z-index: 50;
     position: absolute;
     border-radius: 0px .28571429rem .28571429rem 0px !important;
 
 }
-.mb-segment{
 
- margin-top: 5px !important;
+.mb-segment {
+
+    margin-top: 5px !important;
 }
-.seg-attached-left{
+
+.seg-attached-left {
     border-top-left-radius: 0 !important;
 }
-.seg-attached-right{
+
+.seg-attached-right {
     border-top-right-radius: 0 !important;
 }
+
 .ui.grid>.column:not(.row).w-a {
     width: auto !important;
 }
-.ui.button.w-a{
+
+.ui.button.w-a {
     margin: 0 !important;
 }
-.ui.celled.list>.item, .ui.celled.list>.list{
+
+.ui.celled.list>.item,
+.ui.celled.list>.list {
     padding-top: .5rem !important;
 }
-.c-submenu{
+
+.c-submenu {
     margin-bottom: .25em !important;
 }
-.ui.horizontal.list>.item{
+
+.ui.horizontal.list>.item {
     margin-right: auto !important;
 }
-.ui.horizontal.list>.item:hover{
+
+.ui.horizontal.list>.item:hover {
     text-decoration: none;
 }
-.column.item:hover{
+
+.column.item:hover {
     background-color: #a333c84f !important;
 }
-.ui.horizontal.list >.item{
+
+.ui.horizontal.list>.item {
     margin-right: 5px !important;
 }
-.problem_body > pre ,.comment_body>*>pre{
+
+.problem_body>pre,
+.comment_body>*>pre {
     padding: 10px 5px 10px 10px !important;
     margin: 15px 0 !important;
     display: block !important;
@@ -197,22 +232,25 @@ background: linear-gradient(135deg, rgba(26,167,255,1) 0%, rgba(0,107,184,1) 76%
     word-wrap: normal !important;
     overflow-x: auto !important;
 }
-h6{
+
+h6 {
     margin: 0 !important;
 }
-.main-content{
+
+.main-content {
     min-height: calc(100vh - 100px);
 
 }
-.footers{
+
+.footers {
     margin-top: 100px !important;
     height: 50px;
 }
-.redborder{
+
+.redborder {
     border: red 1px solid !important;
 }
-.grey
-{
+
+.grey {
     background-color: #d1d1d1 !important;
 }
-

@@ -23,3 +23,4 @@ Route::middleware('auth:web')->post('comments/{id}/validate',"CommentsApiControl
 Route::middleware('auth:web')->post('comments/{id}/cLike',"CommentsApiController@Commentlike");
 Route::middleware('auth:web')->post('comments/{id}/delete',"CommentsApiController@CommentDelete");
 Route::middleware('auth:web')->post('comments/{id}/editComment',"CommentsApiController@CommentEdit");
+Route::middleware('auth:web')->get('Notifications',"CreatedIssueController@getNotifications");

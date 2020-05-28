@@ -17,8 +17,8 @@ class PostMigrate extends Migration
             $table->bigIncrements('id')->unique();
             $table->string('title');
             $table->longText('description');
-            $table->integer("like")->default(0);
-            $table->integer('comment')->default(0);
+            $table->integer("like")->default(0); // removed
+            $table->integer('comment')->default(0); //removed
             $table->integer('user_id')->unsigned();
             $table->softDeletes();
             $table->timestamps();

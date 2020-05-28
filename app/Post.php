@@ -14,7 +14,7 @@ class Post extends Model
      * @var array
      */
     protected $fillable = [
-        'title', 'description', 'like','comment','user_id'
+        'title', 'description', 'like', 'comment', 'user_id'
     ];
     public function Comments()
     {
@@ -41,5 +41,8 @@ class Post extends Model
     {
         return $this->hasMany('App\Userplike');
     }
-
+    public function Keywords()
+    {
+        return $this->belongsToMany('App\Keyword');
+    }
 }

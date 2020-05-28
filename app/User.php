@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','banned','role','username'
+        'name', 'email', 'password', 'banned', 'role', 'username'
     ];
 
     /**
@@ -46,20 +46,20 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Post');
     }
-   public function Profile()
-   {
-       return $this->hasOne('App\Profile');
-   }
-   public function Subcomments()
-   {
-       return $this->hasMany('App\Subcomment');
-   }
-   public function Clikes()
-   {
-       return $this->hasMany('App\Userclike');
-   }
-//    public function Plikes()
-//    {
-//        return $this->hasMany('App\Userplike');
-//    }
+    public function Profile()
+    {
+        return $this->hasOne('App\Profile');
+    }
+    public function Subcomments()
+    {
+        return $this->hasMany('App\Subcomment');
+    }
+    public function Clikes()
+    {
+        return $this->hasMany('App\Userclike');
+    }
+    public function Plikes()
+    {
+        return $this->hasMany('App\Userplike');
+    }
 }

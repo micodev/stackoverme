@@ -1,6 +1,6 @@
 <template>
   <div class="ui fluid piled raised segments">
-    <div v-for="comment in scomments" :key="comment.id"  v-bind="comment" class="ui segment blue">
+    <div v-for="comment in scomments" :key="comment.id" v-bind="comment" class="ui segment blue">
       <!-- commentId="{{ $comment->id}}"-->
       <!-- class="ui grey ribbon label" -->
       <a
@@ -31,7 +31,8 @@
         <div class="content">
           {{ comment.user.name }}
           <!-- {{ $comment->user->name }} -->
-          <i class="check primary circle icon"></i>
+          <i v-if="comment.user.role == 20" class="check primary circle icon"></i>
+
           <div class="sub header">
             {{ comment.user.role == 10 ? "User":"Lecturer" }}
             <!-- {{ $comment->user->role==10 ? "User" : "Lecturer" }} -->
@@ -50,6 +51,7 @@
         <div class="ui fitted divider" style="margin-bottom:19.600px;"></div>
         <div class="ui buttons d-inline" style="margin-top:10px;display:inline !important;">
           <button
+            v-if="is_owner"
             v-bind:class="[comment.is_correct==1?'grey':'green','ui icon button c-submenu']"
             @click="isCorrectFun(comment.id)"
             :aria-label="comment.id"
@@ -123,9 +125,9 @@
               class="header d-inline"><b>@micodev</b></a> just now.-->
               {{ sub.description }}
             </div>
-            <button class="circular ui icon right floated mini button">
+            <!-- <button class="circular ui icon right floated mini button">
               <i class="reply icon"></i>
-            </button>
+            </button>-->
           </div>
           <div class="ui fitted divider" style="margin-top:13px;"></div>
         </div>
@@ -234,10 +236,10 @@
 <script>
 //this.$clipboard("test");
 export default {
-  props: ["post_id", "user_id"],
+  props: ["post_id", "user_id", "is_owner"],
   data() {
     return {
-      editCommentBody:null,
+      editCommentBody: null,
       editComment: null,
       subComment: null,
       comments: [],
@@ -258,30 +260,42 @@ export default {
       );
     },
     EditComment: function() {
-       var body =$(".content > .simditor .simditor-body").html();
-       var imges = "";
-        $('.upeditimages').children('.item').each(function () {
-             imges=imges + "src=" + $(this).find( "img" ).attr("src") +" thumb=" + $(this).find( "img" ).attr("thumb")+ ","; // "this" is the current element in the loop
+      var body = $(".content > .simditor .simditor-body").html();
+      var imges = "";
+      $(".upeditimages")
+        .children(".item")
+        .each(function() {
+          imges =
+            imges +
+            "src=" +
+            $(this)
+              .find("img")
+              .attr("src") +
+            " thumb=" +
+            $(this)
+              .find("img")
+              .attr("thumb") +
+            ","; // "this" is the current element in the loop
         });
-        var post = {
+      var post = {
         commentId: this.commendId,
-        body : body,
-        images : imges
+        body: body,
+        images: imges
       };
       window.axios
         .post("/api/comments/" + this.post_id + "/editComment", post)
         .then(({ data }) => {
-           var comment = this.scomments.filter(function(comment) {
-               return comment.id == data.id;
-           });
-          
+          var comment = this.scomments.filter(function(comment) {
+            return comment.id == data.id;
+          });
+
           comment[0].description = data.description;
-          comment[0].images.splice(0,comment[0].images.length);
-          data.images.forEach(function(image){
+          comment[0].images.splice(0, comment[0].images.length);
+          data.images.forEach(function(image) {
             comment[0].images.push(image);
           });
           //comment[0].images = data.images;
-         // console.log(comment[0]);
+          // console.log(comment[0]);
         });
     },
     deleteComment(id) {
@@ -453,15 +467,17 @@ export default {
       window.axios
         .post("/api/comments/" + this.post_id + "/validate", post)
         .then(({ data }) => {
-          var comment = this.comments.filter(function(comment) {
-            return comment.is_correct == 1;
-          });
+          if (data) {
+            var comment = this.comments.filter(function(comment) {
+              return comment.is_correct == 1;
+            });
 
-          if (commenta.length > 0 && commenta[0].is_correct == 0)
-            commenta[0].is_correct = 1;
-          else if (comment.length > 0 && comment[0].is_correct == 1)
-            comment[0].is_correct = 0;
-          if (comment.length > 0) comment[0].is_correct = 0;
+            if (commenta.length > 0 && commenta[0].is_correct == 0)
+              commenta[0].is_correct = 1;
+            else if (comment.length > 0 && comment[0].is_correct == 1)
+              comment[0].is_correct = 0;
+            if (comment.length > 0) comment[0].is_correct = 0;
+          }
         });
     }
   },

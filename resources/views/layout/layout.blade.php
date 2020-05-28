@@ -9,6 +9,7 @@
    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
+
     <script>
         window.lightit = function (e) {
             $(e).wrap('<a href="' + $(e).attr("thumb") + '" rel="lightbox" />');
@@ -22,7 +23,7 @@
 <body>
     <div class="ui sidebar inverted vertical menu">
             @auth
-        <a class="item">
+        <a class="item" href="{{Route("profile")}}">
             <div class="ui horizontal list">
                 <div class="item">
                     <img class="ui mini circular image" data-lightbox="roadtrip"
@@ -30,7 +31,7 @@
                     <div class="content">
                         <div class="ui sub header"> <span class="ui blue text">
                             {{  auth()->user()->name }} </span></div>
-                        <span class="ui grey text">
+                        <span class="ui text" style="color:whitesmoke">
                         {{ auth()->user()->role==10 ? "User" : "Lecturer" }}
                         </span>
                     </div>
@@ -42,35 +43,41 @@
             <div class="ui inverted accordion">
                 <div class="title">
                     <i class="dropdown icon"></i>
-                    <i class="tags icon"></i> Tags
+                    <i class="tags icon"></i> Tags Supported
                 </div>
                 <div class="content" style="margin-top: 5px;">
                     <div class="ui contianer">
                         <div class="ui fluid grid">
                             @foreach (App\Tag::all() as $tag)
-                            <div class="sixteen wide column item">
-                                    <div class="d-inline">{{ $tag->name }} </div> <i
+
+                            <div class="sidelink sixteen wide column item" data-value="{{ Route("tag",$tag->name) }}">
+
+                                      <div class="d-inline">{{ $tag->name }} </div> <i
                                         class="{{ $tag->Icon }} colored right float"></i>
                                 </div>
                             @endforeach
-
-
                         </div>
                     </div>
-
-
                 </div>
             </div>
 
         </a>
         @auth
+        <a class="item"  href="{{Route("home")}}">
+            <div class="title">
+                    <i class="home circle icon"></i> Home
+            </div>
+        </a>
+        <a class="item"  href="{{Route("problems")}}">
+            <div class="title">
+                    <i class="info circle icon"></i> Problems
+            </div>
+        </a>
         <form action="/logout" method="POST" id="logout">
         <a class="item"  href="javascript:{}" onclick="document.getElementById('logout').submit(); return false;">
 
                 {{ csrf_field() }}
                 <i class="sign out alternate icon" ></i> LogOut
-
-
         </a>
     </form>
         @endauth
@@ -89,47 +96,21 @@
                 <a  href="/createIssue" class="ui icon link item">
                        <i class="plus icon"></i>
                 </a>
-                @endauth
-                <div class="ui icon top left pointing dropdown link item">
+
+                {{--  <div id="notiapp" class="ui icon top left pointing dropdown link item">
                     <i class="inbox icon"></i>
-                    <div class="menu">
-                        <div class="header">Mark Read All as Read</div>
-                        <div class="item">
-                            {{--  <a href="images/image-1.jpg" data-lightbox="image-1" data-title="My caption">Image #1</a>  --}}
-                            <img class="ui mini circular image"
-                                src="https://fomantic-ui.com/images/avatar2/small/eve.png">
-                            <div class="content d-inline" style="margin-bottom:5px;">
-                                <div class="ui sub header"> <span class="ui blue text">Molly</span></div>
-                            </div>
-                            <div class="ui sub"> <span class="ui grey text">Comment your <a>post</a></span></div>
+                    <notfication-component user_id={{ auth()->user()->id }}></notfication-component>
+                </div>  --}}
 
+                @endauth
+                <div class="item" >
+                     <form action="/search" method="GET" class="search_form" name="search">
+                        {{ csrf_field() }}
+                        <div class="ui transparent icon input">
+                                    <input type="text" style="color:white;width:300px;" name="search" placeholder="Search..." >
+                                    <i class="search link inverted icon"></i>
                         </div>
-                        <div class="item">
-                            <img class="ui mini circular image"
-                                src="https://fomantic-ui.com/images/avatar2/small/eve.png">
-                            <div class="content d-inline" style="margin-bottom:5px;">
-                                <div class="ui sub header"> <span class="ui blue text">Molly</span></div>
-                            </div>
-                            <div class="ui sub"> <span class="ui grey text">like your <a>post</a></span></div>
-
-                        </div>
-                        <div class="item">
-                            <img class="ui mini circular image" onclick="lightit(this)"
-                                src="https://fomantic-ui.com/images/avatar2/small/eve.png">
-                            <div class="content d-inline" style="margin-bottom:5px;">
-                                <div class="ui sub header"> <span class="ui blue text">Molly</span></div>
-                            </div>
-                            <div class="ui sub"> <span class="ui grey text">share your <a>post</a></span></div>
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="item">
-                    <div class="ui transparent icon input">
-                        <input type="text" placeholder="Search...">
-                        <i class="search link inverted icon"></i>
-                    </div>
+                     </form>
                 </div>
             </div>
         </div>
@@ -170,6 +151,7 @@
     <script src="/js/hotkeys.js"></script>
     <script src="/js/simditor.js"></script>
     <script src="/js/uploader.js"></script>
+    <script src="/js/custom.js"></script>
     <script>
 
         $(document).ready(function () {
@@ -221,23 +203,36 @@
             }
             if ($("#editPost").length)
             {
+
                 Simditor.locale = 'en-US';
                 toolbar = ['bold','strikethrough', 'fontScale', 'color', 'ol', 'code', 'link' , 'alignment'];
-                var editor = new Simditor({
+                var PostEditor = new Simditor({
                     textarea: $('#editPost'),
                     toolbar: toolbar,
                     //optional options
                 });
             }
-            
+            $(".editModal").modal();
+            $(".editPost").on('click', function () {
+                $(".description > .simditor .simditor-body").children().remove();
+                $(".description > .simditor .simditor-body").prepend($(".problem_body").clone().children());
 
+                var imgs = "";
+                $(".upeditpost").children().remove();
+                $(".imageSegment").each(
+                    function() {
+                        var ing = '<div class="item"><a class="ui teal image medium label">'+$(this).html()+'p1jrrvn</a></div>';
+                        $(".upeditpost").append(ing);
+                    });
+                $(".title").val($(".problem_title").text());
+                $(".editModal").modal("show");
+            });
+            if(document.location.hash ==null)
+            $(window).scrollTop(0);
+            });
 
         })
-        $(".editModal").modal();
-        $(".editPost").on('click', function () {  $(".editModal").modal("show"); });
-        if(document.location.hash ==null)
-        $(window).scrollTop(0);
-        });
+
 
     </script>
 

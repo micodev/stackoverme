@@ -41,12 +41,28 @@
             </div>
             <div class="row">
                 <div class="ten wide column">
+                    <div class="ui fluid multiple search selection dropdown keyword">
+                        <input type="hidden" name="keywords" class="keywords_input">
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Select keyword&nbsp<i class="keyboard outline icon"></i></div>
+                        <div class="menu">
+                           @foreach (App\Keyword::all() as $key)
+                                <div class="item" data-value="{{$key->id}}">{{$key->key}}
+                                </div>
+                           @endforeach
 
-                    <label for="embedpollfileinput" class="ui tiny red left floated button">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="ten wide column">
+
+                    <label for="embedpollfileinput" class="ui tiny red left floated button ">
                         <i class="ui upload icon"></i>
                         Upload image
                     </label>
-                    <input type="file" class="inputfile" id="embedpollfileinput" accept="image/x-png,image/gif,image/jpeg"
+                    <input type="file" class="inputfile commentFile" id="embedpollfileinput" accept="image/x-png,image/gif,image/jpeg"
                         multiple>
                         <div class="ten wide column">
                             <button class="ui primary right floated tiny button post_issue" type='button' ><i class="save icon"></i> Save</button>
@@ -57,7 +73,7 @@
                 <div class="ten wide column">
                  <input type="hidden" name="images" class="images_input" value="">
                     <div class="ui horizontal list upimages">
-                       
+
                         <!-- <div class="item">
                             <a class="ui teal image medium label">
                                 <img src="https://fomantic-ui.com/images/avatar/small/joe.jpg">
@@ -76,7 +92,7 @@
                 </div>
 
             </div>
-            <div class="row">
+            {{--  <div class="row">
                 <div class="ten wide column">
                     <div class="ui raised segment">
                         <a class="ui red ribbon label">Similar Question</a>
@@ -166,7 +182,7 @@
 
                     </div>
                 </div>
-            </div>
+            </div>  --}}
         </div>
      </form>
 

@@ -6,153 +6,63 @@
 
         <div class="column @auth {{ 'centered seven wide ' }} @endauth">
             <!-- left column-->
+            @if (count($posts)>0)
             <div class="row">
                 <h2 class="ui header">
                     <i class="bolt icon blue"></i>
                     <div class="content">
                         <span class="ui big red text">R</span>ecommanded Question
-                        <div class="sub header">Sort
-                            <div class="ui red mini buttons">
-                                <button class="ui button"><i class="poll icon"></i> Vote</button>
-                                <button class="ui button"><i class="history icon"></i> Recent</button>
-                                <button class="ui button"><i class="hotjar icon"></i> Hot</button>
-                            </div>
-                        </div>
-
                     </div>
                 </h2>
             </div>
             <div class="ui fitted divider"></div>
+            @else
+             <div class="row">
+                <h2 class="ui header">
+                   no recommanded yet for you.
+                </h2>
+            </div>
+            @endif
             <div class="row">
 
                 <div class="ui relaxed divided list">
+                    @foreach($posts as $po)
+                        <div class="item">
+                            <div class="content">
+                                <h5 class="header"><a href="{{ route('problem',['id'=>$po['id']]) }}">{{ $po['title'] }}</a> </h5>
+                                <h3 class="header d-inline">by</h3>
+                                <h6 class="d-inline"><a class="header"><b>{{ $po["user"]["name"] }}</b></a></h6>
+                                <div class="description">
+                                    <div class="ui horizontal list">
+                                        @foreach ($po["tags"] as $tag)
+                                            <div class="item" data-value="af">
+                                                <div class="ui horizontal label">
+                                                    <i class="{{ $tag["Icon"] }} colored"></i><h5 style="display:inline-block;margin-left:5px;margin-top:0px;">{{ $tag["name"] }}</h5>
+                                                </div>
+                                            </div>
+                                        @endforeach
 
-                    <div class="item">
-                        <div class="content">
-                            <h5 class="header">Question title</h5>
-                            <h3 class="header d-inline">by</h3>
-                            <h6 class="d-inline"><a class="header"><b>Bob s Burgers</b></a></h6>
-                            <div class="description">
-                                <div class="ui horizontal list">
-                                    <div class="item" data-value="af">
-                                        <div class="ui horizontal label">
-                                            <i class="devicon-csharp-plain-wordmark colored"></i> Csharp
-                                        </div>
                                     </div>
-                                    <div class="item" data-value="ax">
-                                        <div class="ui horizontal label">
-                                            <i class="devicon-javascript-plain colored"></i> JavaScript
+                                    <div class="row right floated" style="margin-top:5px;">
+                                        <div class="ui blue tiny right floated horizontal labeled icon buttons">
+                                            <button class="ui button">
+                                                <i class="poll icon"></i>
+                                                {{ $po["like"] }}
+                                            </button>
+                                            <button class="ui button">
+                                                <i class="comment alternate icon"></i>
+                                                {{ $po["comment"] }}
+                                            </button>
+                                            <button class="ui button">
+                                                <i class="calendar icon"></i>
+                                                {{str_replace('00:00:00', '', $po["created_at"]) }}
+                                            </button>
                                         </div>
-                                    </div>
-                                    <div class="item" data-value="al">
-                                        <div class="ui horizontal label">
-                                            <i class="devicon-nodejs-plain colored"></i> NodeJs
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row right floated" style="margin-top:5px;">
-                                    <div class="ui blue tiny right floated horizontal labeled icon buttons">
-                                        <button class="ui button">
-                                            <i class="poll icon"></i>
-                                            20
-                                        </button>
-                                        <button class="ui button">
-                                            <i class="comment alternate icon"></i>
-                                            2
-                                        </button>
-                                        <button class="ui button">
-                                            <i class="calendar icon"></i>
-                                            {{ Carbon\Carbon::now()->format("Y-m-d") }}
-                                        </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="item">
-                        <div class="content">
-                            <h5 class="header">Question title</h5>
-                            <h3 class="header d-inline">by</h3>
-                            <h6 class="d-inline"><a class="header"><b>Bob s Burgers</b></a></h6>
-                            <div class="description">
-                                <div class="ui horizontal list">
-                                    <div class="item" data-value="af">
-                                        <div class="ui horizontal label">
-                                            <i class="devicon-csharp-plain-wordmark colored"></i> Csharp
-                                        </div>
-                                    </div>
-                                    <div class="item" data-value="ax">
-                                        <div class="ui horizontal label">
-                                            <i class="devicon-javascript-plain colored"></i> JavaScript
-                                        </div>
-                                    </div>
-                                    <div class="item" data-value="al">
-                                        <div class="ui horizontal label">
-                                            <i class="devicon-nodejs-plain colored"></i> NodeJs
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row right floated" style="margin-top:5px;">
-                                    <div class="ui blue tiny right floated horizontal labeled icon buttons">
-                                        <button class="ui button">
-                                            <i class="poll icon"></i>
-                                            20
-                                        </button>
-                                        <button class="ui button">
-                                            <i class="comment alternate icon"></i>
-                                            2
-                                        </button>
-                                        <button class="ui button">
-                                            <i class="calendar icon"></i>
-                                            {{ Carbon\Carbon::now()->format('Y-m-d') }}
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="content">
-                            <h5 class="header">Question title</h5>
-                            <h3 class="header d-inline">by</h3>
-                            <h6 class="d-inline"><a class="header"><b>Bob Burgers</b></a></h6>
-                            <div class="description">
-                                <div class="ui horizontal list">
-                                    <div class="item" data-value="af">
-                                        <div class="ui horizontal label">
-                                            <i class="devicon-csharp-plain-wordmark colored"></i> Csharp
-                                        </div>
-                                    </div>
-                                    <div class="item" data-value="ax">
-                                        <div class="ui horizontal label">
-                                            <i class="devicon-javascript-plain colored"></i> JavaScript
-                                        </div>
-                                    </div>
-                                    <div class="item" data-value="al">
-                                        <div class="ui horizontal label">
-                                            <i class="devicon-nodejs-plain colored"></i> NodeJs
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row right floated" style="margin-top:5px;">
-                                    <div class="ui blue tiny right floated horizontal labeled icon buttons">
-                                        <button class="ui button">
-                                            <i class="poll icon"></i>
-                                            20
-                                        </button>
-                                        <button class="ui button">
-                                            <i class="comment alternate icon"></i>
-                                            2
-                                        </button>
-                                        <button class="ui button">
-                                            <i class="calendar icon"></i>
-                                            {{ Carbon\Carbon::now()->format('Y-m-d') }}
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
 
             </div>

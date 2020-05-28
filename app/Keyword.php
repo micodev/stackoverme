@@ -4,14 +4,15 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Tag extends Model
+class Keyword extends Model
 {
+    public $timestamps = false;
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['name', 'Icon'];
+    protected $fillable = ['key'];
     public function Posts()
     {
         return $this->belongsToMany('App\Post');
