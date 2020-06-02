@@ -7,11 +7,11 @@ import axios from "axios";
 
 import Clipboard from "v-clipboard";
 
-import Echo from "laravel-echo";
+//import Echo from "laravel-echo";
 
-import socketio from "socket.io-client";
+//import socketio from "socket.io-client";
 
-import VueSocketIO from "vue-socket.io";
+//import VueSocketIO from "vue-socket.io";
 
 // import Echo from "laravel-echo";
 
