@@ -28,7 +28,7 @@
         "chart.js": "^2.8.0",
         "ckeditor": "^4.11.4",
         "devicon": "^2.2.0",
-        "express": "^4.17.1",
+        "express": "^4.17.3",
         "fomantic-ui": "^2.7.4",
         "laravel-echo": "^1.6.1",
         "lightbox2": "^2.11.0",
